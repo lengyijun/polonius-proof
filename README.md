@@ -13,8 +13,8 @@ abella datafrog_opt.thm
 ## How to prove 
 Just to prove 
 ```
-naive_error => datafrog_opt_error  AND
-datafrog_opt_error => naive_error 
+naive_error => datafrog_opt_error (Theorem Naive2DatafrogOpt)  AND
+datafrog_opt_error => naive_error (Theorem DatafrogOpt2Naive)
 ```
 
 `datafrog_opt_error => naive_error` is not so difficulty, 
