@@ -3,7 +3,15 @@
 ## What is this?
 In [polonius](https://github.com/rust-lang/polonius), there are two datalog rules: naive and datafrog-opt.
 
-This repo use [abella](http://abella-prover.org/) to prove that naive is equivalent to datafrog-opt:
+This repo use [abella](http://abella-prover.org/) to prove that naive is equivalent to datafrog-opt.
+
+## How to run
+```
+abella datafrog_opt.thm
+```
+
+## How to prove 
+Just to prove 
 ```
 naive_error => datafrog_opt_error  AND
 datafrog_opt_error => naive_error 
@@ -19,10 +27,6 @@ I only rely on one axiom(lemma without proof): `origin_live_on_entry Origin Poin
 
 At any point, an origin must either be *live* or *dead*.
 
-## How to run
-```
-abella datafrog_opt.thm
-```
 
 ## TODO
 I didn't care placeholder in naive. I guess placeholder loan will never be invalidated ?
