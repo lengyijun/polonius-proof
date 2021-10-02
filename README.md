@@ -15,6 +15,8 @@ but `naive_error => datafrog_opt_error` is not trival.
 
 I define another set of rules: `my_subset` and `my_origin_contains_loan_on_entry` to fix the gap.
 
+I only rely on one axiom: `origin_live_on_entry Origin Point` is conflicted with `!origin_live_on_entry Origin Point`
+
 ## How to run
 ```
 abella datafrog_opt.thm
