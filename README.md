@@ -9,6 +9,12 @@ naive_error => datafrog_opt_error  AND
 datafrog_opt_error => naive_error 
 ```
 
+`datafrog_opt_error => naive_error` is not so difficulty, 
+
+but `naive_error => datafrog_opt_error` is not trival. 
+
+I define another set of rules: `my_subset` and `my_origin_contains_loan_on_entry` to fix the gap.
+
 ## How to run
 ```
 abella datafrog_opt.thm
