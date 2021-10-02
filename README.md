@@ -2,6 +2,7 @@
 
 ## What is this?
 In [polonius](https://github.com/rust-lang/polonius), there are two datalog rules: naive and datafrog-opt.
+
 This repo use [abella](http://abella-prover.org/) to prove that naive is equivalent to datafrog-opt:
 ```
 naive_error => datafrog_opt_error  AND
