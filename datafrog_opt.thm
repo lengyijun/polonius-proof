@@ -301,6 +301,7 @@ my_origin_contains_loan_on_entry Origin2  Loan  Point  :=
   my_origin_contains_loan_on_entry Origin1  Loan  Point /\
   datafrog_opt_subset Origin1  Origin2  Point .
 
+
 Theorem Lemma92:
   forall Origin1,
   forall Origin2,
@@ -345,38 +346,6 @@ Theorem Lemma90:
     (
       exists Origin5,
       datafrog_opt_origin_contains_loan_on_entry Origin5 Loan Point3 /\
-      origin_live_on_entry Origin5 Point3 /\
-      my_subset Origin5 Origin9 Point2
-    )
-  ).
-intros.
-assert dying_can_reach_origins Origin1 Point2 Point3.
-case H2.
-search.
-apply Axiom2 with Origin = Origin2 , Point = Point3.
-case H7.
-search.
-assert dying_can_reach Origin1 Origin2 Point2 Point3.
-apply Lemma92 to H9 H6 H3.
-case H10.
-search.
-search.
-
-
-Theorem Lemma91:
-  forall Origin0,
-  forall Origin1,
-  forall Origin9,
-  forall Point2,
-  forall Point3,
-  live_to_dying_regions Origin0 Origin1 Point2 Point3 ->
-  my_subset Origin1 Origin9 Point2 ->
-  origin_live_on_entry Origin9 Point3 ->
-  (
-    datafrog_opt_subset Origin0 Origin9 Point3 \/
-    (
-      exists Origin5,
-      datafrog_opt_subset Origin0 Origin5 Point3 /\
       origin_live_on_entry Origin5 Point3 /\
       my_subset Origin5 Origin9 Point2
     )
