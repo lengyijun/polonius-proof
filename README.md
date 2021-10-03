@@ -3,7 +3,7 @@
 ## What is this?
 In [polonius](https://github.com/rust-lang/polonius), there are two datalog rules: naive and datafrog-opt.
 
-This repo use [abella](http://abella-prover.org/) to prove that naive is equivalent to datafrog-opt.
+This repo use [abella](http://abella-prover.org/) to prove that they are equivalent. 
 
 ## How to run
 ```
