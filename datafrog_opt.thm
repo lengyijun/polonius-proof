@@ -10,7 +10,7 @@ Type loan_invalidated_at loan -> point -> prop.
 Type not_loan_killed_at loan -> point -> prop.
 Type subset_base origin -> origin -> point -> prop.
 
-
+/* At any point, the origin must either be live or dead */
 Theorem Axiom2: 
   forall Origin,
   forall Point,
