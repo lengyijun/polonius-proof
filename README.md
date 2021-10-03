@@ -30,5 +30,9 @@ I only rely on one axiom(lemma without proof): `origin_live_on_entry Origin Poin
 At any point, an origin must either be *live* or *dead*.
 
 
+## Benefit of this proof
+We don't need to worry about the correctness of datafrog-opt.
+The tests only serve for the correctness of implementation.
+
 ## TODO
 I didn't care placeholder in naive. I guess placeholder loan will never be invalidated ?
