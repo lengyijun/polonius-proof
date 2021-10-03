@@ -4,24 +4,17 @@ Kind point type.
 
 /* input */
 Type origin_live_on_entry origin -> point -> prop.
-Type not_origin_live_on_entry origin -> point -> prop.
 Type loan_issued_at origin -> loan -> point -> prop.
 Type cfg_edge point -> point -> prop.
 Type loan_invalidated_at loan -> point -> prop.
 Type not_loan_killed_at loan -> point -> prop.
 Type subset_base origin -> origin -> point -> prop.
 
-Theorem OriginAxiom:
-  forall Origin,
-  forall Point,
-  origin_live_on_entry Origin Point -> 
-  not_origin_live_on_entry Origin Point -> false.
-skip.
 
 Theorem Axiom2: 
   forall Origin,
   forall Point,
-  (origin_live_on_entry Origin Point ) \/ ( not_origin_live_on_entry Origin Point ).
+  (origin_live_on_entry Origin Point ) \/ ( origin_live_on_entry Origin Point -> false).
 skip.
 
 Define dead_borrow_region_can_reach_root: origin -> point -> loan -> prop ,
@@ -38,7 +31,7 @@ Define dead_borrow_region_can_reach_root: origin -> point -> loan -> prop ,
 
 dead_borrow_region_can_reach_root Origin Point Loan :=
   loan_issued_at Origin  Loan  Point /\
-  not_origin_live_on_entry Origin  Point ;
+  (origin_live_on_entry Origin  Point -> false) ;
 
 dead_borrow_region_can_reach_dead Origin Point Loan :=
   dead_borrow_region_can_reach_root Origin Point Loan;
@@ -47,19 +40,19 @@ dead_borrow_region_can_reach_dead  Origin2  Point  Loan  :=
   exists Origin1,
   dead_borrow_region_can_reach_dead Origin1  Point  Loan  /\
   datafrog_opt_subset Origin1  Origin2  Point  /\
-  not_origin_live_on_entry Origin2  Point ;
+  ( origin_live_on_entry Origin2  Point -> false );
 
 dying_region_requires Origin  Point1  Point2  Loan  :=
-  (datafrog_opt_origin_contains_loan_on_entry Origin  Loan  Point1  ) /\
-  (not_loan_killed_at Loan  Point1  ) /\
-  (cfg_edge Point1  Point2 ) /\
-  (not_origin_live_on_entry Origin  Point2 );
+  datafrog_opt_origin_contains_loan_on_entry Origin  Loan  Point1   /\
+  not_loan_killed_at Loan  Point1   /\
+  cfg_edge Point1  Point2  /\
+  (origin_live_on_entry Origin  Point2 -> false);
 
 live_to_dying_regions Origin1  Origin2  Point1  Point2  :=
   datafrog_opt_subset Origin1  Origin2  Point1  /\
   cfg_edge Point1  Point2  /\
   origin_live_on_entry Origin1  Point2  /\
-  not_origin_live_on_entry Origin2  Point2 ;
+  (origin_live_on_entry Origin2  Point2 -> false ) ;
 
 dying_can_reach_origins Origin2  Point1  Point2  :=
   exists Origin1,
@@ -76,7 +69,7 @@ dying_can_reach Origin1  Origin2  Point1  Point2  :=
 dying_can_reach Origin1  Origin3  Point1  Point2  :=
   exists Origin2,
   dying_can_reach Origin1  Origin2  Point1  Point2   /\
-  not_origin_live_on_entry Origin2  Point2 /\ 
+  ( origin_live_on_entry Origin2  Point2 -> false ) /\ 
   datafrog_opt_subset Origin2  Origin3  Point1 ;
 
 dying_can_reach_live Origin1  Origin2  Point1  Point2  :=
@@ -529,7 +522,7 @@ Theorem MyOriginPoint:
   my_subset Origin2 Origin9 Point1 ->
   my_origin_contains_loan_on_entry Origin2 Loan Point1 ->
   origin_live_on_entry Origin9 Point2 ->
-  not_origin_live_on_entry Origin2 Point2 ->
+  ( origin_live_on_entry Origin2 Point2 -> false ) ->
   not_loan_killed_at Loan  Point1  ->
   my_origin_contains_loan_on_entry Origin9 Loan Point2
 ).
@@ -643,7 +636,7 @@ Theorem Lemma99:
     forall Point,
     my_origin_contains_loan_on_entry Origin5 Loan Point ->
     my_subset Origin5 Origin9 Point ->
-    not_origin_live_on_entry Origin5 Point ->
+    ( origin_live_on_entry Origin5 Point -> false ) ->
     origin_live_on_entry Origin9 Point ->
     datafrog_opt_loan_live_at Loan Point
   ).
@@ -664,9 +657,9 @@ case H1.
 case H5.
 apply Lemma98 to H6 H2 H4.
 search.
-apply OriginAxiom to H9 H3.
+search.
 case H7.
-apply OriginAxiom to H9 H3.
+search.
 apply Axiom2 with Origin = Origin1 , Point = Point.
 case H7.
 apply IH to H5 H8.
