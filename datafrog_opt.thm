@@ -11,7 +11,7 @@ Type not_loan_killed_at loan -> point -> prop.
 Type subset_base origin -> origin -> point -> prop.
 
 /* At any point, the origin must either be live or dead */
-Theorem Axiom2: 
+Theorem OriginLiveAxiom: 
   forall Origin,
   forall Point,
   (origin_live_on_entry Origin Point ) \/ ( origin_live_on_entry Origin Point -> false).
@@ -314,7 +314,7 @@ Theorem Lemma92:
   ).
 induction on 2.
 intros.
-apply Axiom2 with Origin = Origin2 , Point = Point3.
+apply OriginLiveAxiom with Origin = Origin2 , Point = Point3.
 case H4.
 search.
 case H2.
@@ -346,7 +346,7 @@ intros.
 assert dying_can_reach_origins Origin1 Point2 Point3.
 case H2.
 search.
-apply Axiom2 with Origin = Origin2 , Point = Point3.
+apply OriginLiveAxiom with Origin = Origin2 , Point = Point3.
 case H7.
 search.
 assert dying_can_reach Origin1 Origin2 Point2 Point3.
@@ -413,7 +413,7 @@ split.
 intros.
 case H2.
 search.
-apply Axiom2 with Origin = Origin2 , Point = Point2.
+apply OriginLiveAxiom with Origin = Origin2 , Point = Point2.
 case H7.
 apply IH to H1 H6 H8 H4.
 search.
@@ -428,13 +428,13 @@ apply IH1 to H1 H11 H12 H10 H4.
 search.
 intros.
 case H4.
-apply Axiom2 with Origin = Origin2 , Point = Point2.
+apply OriginLiveAxiom with Origin = Origin2 , Point = Point2.
 case H7.
 search.
 search.
-apply Axiom2 with Origin = Origin2 , Point = Point2.
+apply OriginLiveAxiom with Origin = Origin2 , Point = Point2.
 case H8.
-apply Axiom2 with Origin = Origin3 , Point = Point2.
+apply OriginLiveAxiom with Origin = Origin3 , Point = Point2.
 case H10.
 apply IH to H1 H7 H11 H5.
 search.
@@ -447,7 +447,7 @@ search.
 intros.
 case H3.
 search.
-apply Axiom2 with Origin = Origin2 , Point = Point2.
+apply OriginLiveAxiom with Origin = Origin2 , Point = Point2.
 case H7.
 apply IH to H1 H6 H8 H4.
 search.
@@ -469,7 +469,7 @@ search.
 apply IH to H2.
 case H6.
 search.
-apply Axiom2 with Origin = Origin2 , Point = Point2.
+apply OriginLiveAxiom with Origin = Origin2 , Point = Point2.
 case H9.
 case MySubsetPoint.
 apply H11 to H3 H8 H10 H5.
@@ -531,7 +531,7 @@ split.
 intros.
 case H2.
 search.
-apply Axiom2 with Origin = Origin1 , Point = Point2.
+apply OriginLiveAxiom with Origin = Origin1 , Point = Point2.
 assert my_subset Origin1 Origin9 Point1.
 case H7.
 apply IH to H1 H5 H9 H4.
@@ -549,7 +549,7 @@ apply H13 to H1 H12 H11 H4.
 assert my_origin_contains_loan_on_entry Origin5 Loan Point2.
 apply MyOriginConcat to H17 H16.
 search.
-apply Axiom2 with Origin = Origin1 , Point = Point2.
+apply OriginLiveAxiom with Origin = Origin1 , Point = Point2.
 case H9.
 assert my_subset Origin1 Origin9 Point1.
 case MySubsetPoint.
@@ -595,7 +595,7 @@ induction on 2.
 intros.
 case H2.
 search.
-apply Axiom2 with Origin = Origin2 , Point = Point.
+apply OriginLiveAxiom with Origin = Origin2 , Point = Point.
 case H6.
 search.
 assert dead_borrow_region_can_reach_dead Origin2 Point Loan.
@@ -613,7 +613,7 @@ Theorem Lemma98:
   origin_live_on_entry Origin9 Point ->
   datafrog_opt_loan_live_at Loan Point.
 intros.
-apply Axiom2 with Origin = Origin1 , Point = Point.
+apply OriginLiveAxiom with Origin = Origin1 , Point = Point.
 case H4.
 search.
 assert dead_borrow_region_can_reach_dead Origin1 Point Loan.
@@ -645,7 +645,7 @@ split.
 intros.
 case H1.
 search.
-apply Axiom2 with Origin = Origin1 , Point = Point.
+apply OriginLiveAxiom with Origin = Origin1 , Point = Point.
 case H5.
 apply IH to H3 H6.
 search.
@@ -660,7 +660,7 @@ search.
 search.
 case H7.
 search.
-apply Axiom2 with Origin = Origin1 , Point = Point.
+apply OriginLiveAxiom with Origin = Origin1 , Point = Point.
 case H7.
 apply IH to H5 H8.
 search.
