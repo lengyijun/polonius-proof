@@ -424,7 +424,7 @@ Another approach to prove?
 - Repeatability
 - Discover problem in proof
 
-<!-- 证明完只有，我一次都没有复查过逻辑，因为我知道一定是对的 -->
+<!-- 证明完之后，我一次都没有复查过逻辑，因为我知道一定是对的 -->
 
 --- 
 
@@ -448,7 +448,7 @@ TODO: How to express three mutually exclusive states?
 
 ---
 
-# Tricky things in Abella
+# Paradox in Abella
 
 Both true and false!
 Abella will give a warning.
