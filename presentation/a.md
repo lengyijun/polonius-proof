@@ -326,42 +326,31 @@ Definitely, it's not trival to construct meaningful relationship from naive to d
 
 ---
 
-# How to deal with the gap?
-
-What if `naive_subset` is defined as ...
-Should not extensible along Point
+# Why we meet diffculity here ?
+`naive_subset` has no least fixed point.
+=> `naive_subset` should not extensible along Point
+=> What if `naive_subset` is defined as ...
 
 ```
-Define  my_subset: origin -> origin -> point -> prop,
-        my_origin_contains_loan_on_entry: origin -> loan -> point -> prop by
-my_subset Origin1  Origin2  Point  := datafrog_opt_subset Origin1  Origin2  Point ;
-my_subset Origin1  Origin3  Point  :=
-  exists Origin2,
-  datafrog_opt_subset Origin1  Origin2  Point /\
-  my_subset Origin2  Origin3  Point ;
-my_origin_contains_loan_on_entry Origin Loan Point := datafrog_opt_origin_contains_loan_on_entry Origin Loan Point;
-my_origin_contains_loan_on_entry Origin2  Loan  Point  :=
-  exists Origin1,
-  my_origin_contains_loan_on_entry Origin1  Loan  Point /\
-  datafrog_opt_subset Origin1  Origin2  Point .
+subset(origin1, origin2, point2) :-
+  subset(origin1, origin2, point1),
+  cfg_edge(point1, point2),
+  origin_live_on_entry(origin1, point2),
+  origin_live_on_entry(origin2, point2).
 ```
 
 ---
 
-# Redefine naive_* with datafrog_opt_*
+# Redefine my_* with datafrog_opt_*
 
-my_origin_contain_loan_on_entry <=> naive_origin_contains_loan_on_entry 
-
-my_subset <=> naive_subset
+![](myerror.drawio.png)
 
 ---
-
 ```
-my_subset Origin1 Origin2 Point := datafrog_opt_subset Origin1 Origin2 Point;
-my_subset Origin1 Origin3 Point :=
-  exists Origin2,
-  datafrog_opt_subset Origin1  Origin2  Point /\
-  my_subset Origin2  Origin3  Point ;
+my_subset Origin1  Origin2  Point  :- datafrog_opt_subset Origin1  Origin2  Point .
+my_subset Origin1  Origin3  Point  :-
+  datafrog_opt_subset Origin1  Origin2  Point , 
+  my_subset Origin2  Origin3  Point .
 ```
 
 are similar to the classical recursive type definition:
@@ -376,6 +365,29 @@ Type s nat -> nat.
 Kind list type .
 Type empty list.
 Type cons nat -> list -> list.
+```
+--- 
+
+```
+my_subset Origin1  Origin2  Point  :- datafrog_opt_subset Origin1  Origin2  Point .
+my_subset Origin1  Origin3  Point  :-
+  datafrog_opt_subset Origin1  Origin2  Point , 
+  my_subset Origin2  Origin3  Point .
+```
+
+```
+# naive
+subset(origin1, origin2, point) :- subset_base(origin1, origin2, point).
+
+subset(origin1, origin2, point2) :-
+  subset(origin1, origin2, point1),
+  cfg_edge(point1, point2),
+  origin_live_on_entry(origin1, point2),
+  origin_live_on_entry(origin2, point2).
+
+subset(origin1, origin3, point) :-
+  subset(origin1, origin2, point),
+  subset(origin2, origin3, point).
 ```
 
 --- 
