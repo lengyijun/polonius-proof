@@ -176,6 +176,8 @@ A lot of under developing...
 2. datafrog_opt_error => naive_error
 3. naive_error => datafrog_opt_error
 
+![]( do2naive_question.drawio.png )
+
 ---
 # 1. Use Abella to describe datalog
 ```
@@ -398,6 +400,7 @@ subset(origin1, origin3, point) :-
 1.2 naive and datafrog-opt
 2. datafrog_opt_error => naive_error (100 LOC)
 3. naive_error => datafrog_opt_error (400 LOC)
+
 
 ---
 # Reaction from Rust community
