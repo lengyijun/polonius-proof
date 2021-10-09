@@ -1,0 +1,194 @@
+Kind origin type.
+Kind loan type.
+Kind point type.
+
+/* input */
+Type origin_live_on_entry origin -> point -> prop.
+Type loan_issued_at origin -> loan -> point -> prop.
+Type cfg_edge point -> point -> prop.
+Type loan_invalidated_at loan -> point -> prop.
+Type not_loan_killed_at loan -> point -> prop.
+Type subset_base origin -> origin -> point -> prop.
+
+/* At any point, the origin must either be live or dead */
+Theorem Axiom2: 
+  forall Origin,
+  forall Point,
+  (origin_live_on_entry Origin Point ) \/ ( origin_live_on_entry Origin Point -> false).
+skip.
+
+Define dead_borrow_region_can_reach_root: origin -> point -> loan -> prop ,
+       dead_borrow_region_can_reach_dead: origin -> point -> loan -> prop,
+       dying_region_requires: origin -> point -> point -> loan -> prop ,
+       live_to_dying_regions: origin -> origin -> point -> point -> prop ,
+       dying_can_reach_origins: origin -> point -> point -> prop ,
+       dying_can_reach: origin  -> origin -> point -> point -> prop,
+       dying_can_reach_live: origin -> origin -> point -> point -> prop ,
+       datafrog_opt_subset: origin -> origin -> point -> prop,
+       datafrog_opt_origin_contains_loan_on_entry: origin -> loan -> point -> prop,
+       datafrog_opt_loan_live_at: loan -> point -> prop,
+       datafrog_opt_errors: loan -> point -> prop by
+
+dead_borrow_region_can_reach_root Origin Point Loan :=
+  loan_issued_at Origin  Loan  Point /\
+  (origin_live_on_entry Origin  Point -> false) ;
+
+dead_borrow_region_can_reach_dead Origin Point Loan :=
+  dead_borrow_region_can_reach_root Origin Point Loan;
+
+dead_borrow_region_can_reach_dead  Origin2  Point  Loan  :=
+  exists Origin1,
+  dead_borrow_region_can_reach_dead Origin1  Point  Loan  /\
+  datafrog_opt_subset Origin1  Origin2  Point  /\
+  ( origin_live_on_entry Origin2  Point -> false );
+
+dying_region_requires Origin  Point1  Point2  Loan  :=
+  datafrog_opt_origin_contains_loan_on_entry Origin  Loan  Point1   /\
+  not_loan_killed_at Loan  Point1   /\
+  cfg_edge Point1  Point2  /\
+  (origin_live_on_entry Origin  Point2 -> false);
+
+live_to_dying_regions Origin1  Origin2  Point1  Point2  :=
+  datafrog_opt_subset Origin1  Origin2  Point1  /\
+  cfg_edge Point1  Point2  /\
+  origin_live_on_entry Origin1  Point2  /\
+  (origin_live_on_entry Origin2  Point2 -> false ) ;
+
+dying_can_reach_origins Origin2  Point1  Point2  :=
+  exists Origin1,
+  live_to_dying_regions Origin1  Origin2  Point1  Point2 ;
+
+dying_can_reach_origins Origin  Point1  Point2  :=
+  exists Loan,
+  dying_region_requires Origin  Point1  Point2  Loan ;
+
+dying_can_reach Origin1  Origin2  Point1  Point2  :=
+  dying_can_reach_origins Origin1  Point1  Point2 /\ 
+  datafrog_opt_subset Origin1  Origin2  Point1 ;
+
+dying_can_reach Origin1  Origin3  Point1  Point2  :=
+  exists Origin2,
+  dying_can_reach Origin1  Origin2  Point1  Point2   /\
+  ( origin_live_on_entry Origin2  Point2 -> false ) /\ 
+  datafrog_opt_subset Origin2  Origin3  Point1 ;
+
+dying_can_reach_live Origin1  Origin2  Point1  Point2  :=
+  dying_can_reach Origin1  Origin2  Point1  Point2   /\
+  origin_live_on_entry Origin2  Point2 ;
+
+datafrog_opt_subset Origin1  Origin2  Point  :=
+  subset_base Origin1  Origin2  Point ;
+
+datafrog_opt_subset Origin1  Origin2  Point2  :=
+  exists Point1,
+  datafrog_opt_subset Origin1  Origin2  Point1   /\
+  cfg_edge Point1  Point2  /\
+  origin_live_on_entry Origin1  Point2   /\
+  origin_live_on_entry Origin2  Point2 ;
+
+datafrog_opt_subset Origin1  Origin3  Point2  :=
+  exists Point1,
+  exists Origin2,
+  live_to_dying_regions Origin1  Origin2  Point1  Point2  /\
+  dying_can_reach_live Origin2  Origin3  Point1  Point2 ;
+
+datafrog_opt_origin_contains_loan_on_entry Origin  Loan  Point  :=
+  loan_issued_at Origin  Loan  Point ;
+
+datafrog_opt_origin_contains_loan_on_entry Origin  Loan  Point2  :=
+  exists Point1,
+  datafrog_opt_origin_contains_loan_on_entry Origin  Loan  Point1  /\
+  not_loan_killed_at Loan  Point1  /\
+  cfg_edge Point1  Point2  /\
+  origin_live_on_entry Origin  Point2 ;
+
+datafrog_opt_origin_contains_loan_on_entry Origin2  Loan  Point2  :=
+  exists Point1,
+  exists Origin1,
+  dying_region_requires Origin1  Point1  Point2  Loan  /\
+  dying_can_reach_live Origin1  Origin2  Point1  Point2 ;
+
+datafrog_opt_loan_live_at Loan  Point  :=
+  exists Origin,
+  datafrog_opt_origin_contains_loan_on_entry Origin  Loan  Point  /\
+  origin_live_on_entry Origin  Point ;
+
+datafrog_opt_loan_live_at Loan  Point  :=
+  exists Origin1,
+  exists Origin2,
+  dead_borrow_region_can_reach_dead Origin1  Point  Loan  /\
+  datafrog_opt_subset Origin1  Origin2  Point  /\
+  origin_live_on_entry Origin2  Point ;
+
+datafrog_opt_errors Loan  Point  :=
+  loan_invalidated_at Loan  Point  /\
+  datafrog_opt_loan_live_at Loan  Point .
+
+
+
+
+Define  naive_subset: origin -> origin -> point -> prop,
+        naive_origin_contains_loan_on_entry: origin -> loan -> point -> prop,
+        naive_loan_live_at: loan -> point -> prop,
+        naive_errors: loan -> point -> prop  by
+
+naive_subset Origin1  Origin2  Point  :=
+  subset_base Origin1  Origin2  Point ;
+
+naive_subset Origin1  Origin2  Point2  :=
+  exists Point1,
+  naive_subset Origin1  Origin2  Point1 /\
+  cfg_edge Point1  Point2 /\
+  origin_live_on_entry Origin1  Point2 /\
+  origin_live_on_entry Origin2  Point2 ;
+
+naive_subset Origin1  Origin3  Point  :=
+  exists Origin2,
+  naive_subset Origin1  Origin2  Point /\
+  naive_subset Origin2  Origin3  Point ;
+
+naive_origin_contains_loan_on_entry Origin Loan Point  :=
+  loan_issued_at Origin Loan Point ;
+
+/* naive_origin_contains_loan_on_entry Origin Loan Point  := */
+  /* cfg_node Point   */
+  /* placeholder_Loan Origin  Loan ; */
+
+naive_origin_contains_loan_on_entry Origin2  Loan  Point  :=
+  exists Origin1,
+  naive_origin_contains_loan_on_entry Origin1  Loan  Point /\
+  naive_subset Origin1  Origin2  Point ;
+
+naive_origin_contains_loan_on_entry Origin  Loan  Point2  :=
+  exists Point1,
+  naive_origin_contains_loan_on_entry Origin  Loan  Point1 /\
+  not_loan_killed_at Loan  Point1  /\
+  cfg_edge Point1  Point2 /\
+  origin_live_on_entry Origin  Point2 ;
+
+naive_loan_live_at Loan  Point  :=
+  exists Origin,
+  naive_origin_contains_loan_on_entry Origin  Loan  Point /\
+  origin_live_on_entry Origin  Point ;
+
+naive_errors Loan  Point  :=
+  loan_invalidated_at Loan  Point /\
+  naive_loan_live_at Loan  Point .
+
+
+Theorem Lemma24:
+  ( 
+    forall Point, 
+    forall Origin1, 
+    forall Origin2, 
+    datafrog_opt_subset Origin1 Origin2 Point -> 
+    naive_subset Origin1 Origin2 Point 
+  ) /\ (
+    forall Point1, 
+    forall Point2, 
+    forall Origin1, 
+    forall Origin2, 
+    dying_can_reach Origin1 Origin2 Point1 Point2  -> 
+    naive_subset Origin1 Origin2 Point1
+  ).
+
