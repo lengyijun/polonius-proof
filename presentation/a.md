@@ -339,7 +339,7 @@ my_subset Origin1  Origin3  Point  :=
   exists Origin2,
   datafrog_opt_subset Origin1  Origin2  Point /\
   my_subset Origin2  Origin3  Point ;
-my_origin_contains_loan_on_entry Origin Loan Point  := datafrog_opt_origin_contains_loan_on_entry Origin Loan Point ;
+my_origin_contains_loan_on_entry Origin Loan Point := datafrog_opt_origin_contains_loan_on_entry Origin Loan Point;
 my_origin_contains_loan_on_entry Origin2  Loan  Point  :=
   exists Origin1,
   my_origin_contains_loan_on_entry Origin1  Loan  Point /\
@@ -357,8 +357,8 @@ my_subset <=> naive_subset
 ---
 
 ```
-my_subset Origin1  Origin2  Point  := datafrog_opt_subset Origin1  Origin2  Point ;
-my_subset Origin1  Origin3  Point  :=
+my_subset Origin1 Origin2 Point := datafrog_opt_subset Origin1 Origin2 Point;
+my_subset Origin1 Origin3 Point :=
   exists Origin2,
   datafrog_opt_subset Origin1  Origin2  Point /\
   my_subset Origin2  Origin3  Point ;
@@ -368,7 +368,7 @@ are similar to the classical recursive type definition:
 
 ```
 Kind nat type.
-Type zero  nat.
+Type zero nat.
 Type s nat -> nat.
 ```
 

@@ -279,7 +279,7 @@ my_subset Origin1  Origin3  Point  :=
   exists Origin2,
   datafrog_opt_subset Origin1  Origin2  Point /\
   my_subset Origin2  Origin3  Point ;
-my_origin_contains_loan_on_entry Origin Loan Point  := datafrog_opt_origin_contains_loan_on_entry Origin Loan Point ;
+my_origin_contains_loan_on_entry Origin Loan Point := datafrog_opt_origin_contains_loan_on_entry Origin Loan Point;
 my_origin_contains_loan_on_entry Origin2  Loan  Point  :=
   exists Origin1,
   my_origin_contains_loan_on_entry Origin1  Loan  Point /\
@@ -292,15 +292,15 @@ my_origin_contains_loan_on_entry Origin2  Loan  Point  :=
 <p>my_subset &lt;=&gt; naive_subset</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-paginate="true" data-background-color="#fff" data-theme="gaia" data-marpit-pagination="24" data-marpit-pagination-total="41" style="--paginate:true;--background-color:#fff;--theme:gaia;background-color:#fff;background-image:none;">
-<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>my_subset Origin1  Origin2  Point  := datafrog_opt_subset Origin1  Origin2  Point ;
-my_subset Origin1  Origin3  Point  :=
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>my_subset Origin1 Origin2 Point := datafrog_opt_subset Origin1 Origin2 Point;
+my_subset Origin1 Origin3 Point :=
   exists Origin2,
   datafrog_opt_subset Origin1  Origin2  Point /\
   my_subset Origin2  Origin3  Point ;
 </span></span></foreignObject></svg></code></pre>
 <p>are similar to the classical recursive type definition:</p>
 <pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>Kind nat type.
-Type zero  nat.
+Type zero nat.
 Type s nat -&gt; nat.
 </span></span></foreignObject></svg></code></pre>
 <pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>Kind list type .
