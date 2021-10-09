@@ -526,7 +526,7 @@ https://github.com/rust-lang/rust/issues/70797
 
 ---
 # What else can Polonius help?
-Clippy: safe move
+Static program analysis: safe move
 
 https://github.com/rust-lang/rust-clippy/issues/7459
 
