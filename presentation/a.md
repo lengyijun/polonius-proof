@@ -388,7 +388,7 @@ Type cons nat -> list -> list.
 3. naive_error => datafrog_opt_error (400 LOC)
 
 ---
-# Reaction from community
+# Reaction from Rust community
 ![](zulip.png)
 https://rust-lang.zulipchat.com/#narrow/stream/186049-t-compiler.2Fwg-polonius/topic/Prove.20equivalence.20between.20.20naive.20and.20datafrog-opt
 
@@ -423,6 +423,8 @@ Another approach to prove?
 - Succinctness
 - Repeatability
 - Discover problem in proof
+
+<!-- 证明完只有，我一次都没有复查过逻辑，因为我知道一定是对的 -->
 
 --- 
 
