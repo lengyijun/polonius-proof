@@ -580,7 +580,3 @@ https://github.com/lengyijun/polonius-abella
 
 Welcome to reviewing.
 
---- 
-Q1: Why not use Isabelle ?
-
-A: I can't use Isabelle.
