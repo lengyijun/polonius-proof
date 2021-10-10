@@ -133,7 +133,9 @@ rustc -Zpolonius main.rs
 
 Polonius is based on datalog.
 
-Compiler team created two set of rules: naive and datafrog-opt.
+Compiler team created two set of datalog rules: 
+1. naive 
+2. datafrog-opt
 
 ---
 ![bg](naive.png )
