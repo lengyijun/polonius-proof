@@ -420,6 +420,8 @@ We prove two algorithms in Polonius produce the same result, based on only one a
 --- 
 # Benefit from this proof
 
+Improve interpretability of prolog.
+
 We don't need to test the correctness of datafrog-opt any more.
 We only need to test the implementation correctness.
 
