@@ -434,7 +434,7 @@ Helpful to verify new datalog rules before implementation.
 Another approach to prove?
 
 # Personal future work 
-1. Work on mlsub
+1. Work on relationship between mlsub(2017) and ml-simple(2020)
 2. Make Polonius the default borrow checker of Rust
 
 ---
