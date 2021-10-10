@@ -237,6 +237,7 @@ datafrog_opt_subset Origin1 Origin2 Point
 datafrog_origin_contain_loan_on_entry Origin Loan Point
 => naive_origin_contains_loan_on_entry Origin Loan Point
 ```
+<!-- 为什么第一个lemma就是24, 因为前面23个全错了 -->
 
 ---
 # Prove Lemma24
