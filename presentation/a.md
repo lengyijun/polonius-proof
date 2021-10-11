@@ -428,6 +428,8 @@ We prove two algorithms in Polonius produce the same result, based on only one a
 --- 
 # Benefit from this proof
 
+naive = datafrog-opt is not coincidence.
+
 Improve interpretability of prolog.
 
 We don't need to test the correctness of datafrog-opt any more.
