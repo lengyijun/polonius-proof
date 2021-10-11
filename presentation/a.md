@@ -588,7 +588,7 @@ no negative？
 ---
 # Q&A
 
-Full proof here: 
+Full proof and ppt here: 
 https://github.com/lengyijun/polonius-abella
 
 Welcome to reviewing.
