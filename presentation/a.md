@@ -11,6 +11,11 @@ In Polonius (the new Rust borrow checker)
 
 By YIJUN Leng 
 
+<!-- 首先解释一下题目。。。 -->
+<!-- 虽然有一个看上去很吓人的标题，不过背后原理不超过高中知识 -->
+<!-- 众所周知，SJTUG是一个有着悠久PL传统的社团，形式化证明是我们这里的基础知识。 -->
+<!-- 在座可能大多数都是第一次听SJTUG的pres,所以还是从传统领域的话题开始 -->
+
 ---
 # Self introduction
 
