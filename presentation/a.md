@@ -11,6 +11,12 @@ In Polonius (the new Rust borrow checker)
 
 By YIJUN Leng 
 
+---
+# Self introduction
+
+vim
+manjaro
+ps aux
 
 ---
 # WARMUP: Compile pass? Run pass?
