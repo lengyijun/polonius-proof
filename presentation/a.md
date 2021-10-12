@@ -359,10 +359,10 @@ Definitely, it's not trival to construct meaningful relationship from naive to d
 
 ---
 
-# Why we meet diffculity here ?
-`naive_subset` has no least fixed point.
-=> `naive_subset` should not extensible along Point
-=> What if `naive_subset` is defined as ...
+# Why so diffculity ?
+- `naive_subset` has no least fixed point.
+- `naive_subset` should not extensible along Point
+- What if `naive_subset` is defined as ...
 
 ```
 subset(origin1, origin2, point2) :-
@@ -371,6 +371,8 @@ subset(origin1, origin2, point2) :-
   origin_live_on_entry(origin1, point2),
   origin_live_on_entry(origin2, point2).
 ```
+
+![bg right:35% 80%](naive_subset.drawio.png)
 
 ---
 

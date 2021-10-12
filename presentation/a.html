@@ -294,11 +294,13 @@ naive_origin_contains_loan_on_entry Origin9 Loan Point
 <p><strong>STILL WRONG!</strong></p>
 <p>Definitely, it's not trival to construct meaningful relationship from naive to datafrog-opt.</p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-paginate="true" data-background-color="#fff" data-theme="gaia" data-marpit-pagination="25" data-marpit-pagination-total="44" style="--paginate:true;--background-color:#fff;--theme:gaia;background-color:#fff;background-image:none;">
-<h1>Why we meet diffculity here ?</h1>
-<p><code>naive_subset</code> has no least fixed point.<br />
-=&gt; <code>naive_subset</code> should not extensible along Point<br />
-=&gt; What if <code>naive_subset</code> is defined as ...</p>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="#fff" data-theme="gaia" data-marpit-pagination="25" data-marpit-pagination-total="44" style="--paginate:true;--background-color:#fff;--theme:gaia;background-color:#fff;background-image:none;--marpit-advanced-background-split:35%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;naive_subset.drawio.png&quot;);background-size:80%;"></figure></div></section></foreignObject><foreignObject width="65%" height="720"><section id="25" data-paginate="true" data-background-color="#fff" data-theme="gaia" data-marpit-pagination="25" data-marpit-pagination-total="44" style="--paginate:true;--background-color:#fff;--theme:gaia;background-color:#fff;background-image:none;--marpit-advanced-background-split:35%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h1>Why so diffculity ?</h1>
+<ul>
+<li><code>naive_subset</code> has no least fixed point.</li>
+<li><code>naive_subset</code> should not extensible along Point</li>
+<li>What if <code>naive_subset</code> is defined as ...</li>
+</ul>
 <pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>subset(origin1, origin2, point2) :-
   subset(origin1, origin2, point1),
   cfg_edge(point1, point2),
@@ -306,7 +308,7 @@ naive_origin_contains_loan_on_entry Origin9 Loan Point
   origin_live_on_entry(origin2, point2).
 </span></span></foreignObject></svg></code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-paginate="true" data-background-color="#fff" data-theme="gaia" data-marpit-pagination="26" data-marpit-pagination-total="44" style="--paginate:true;--background-color:#fff;--theme:gaia;background-color:#fff;background-image:none;">
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="25" data-marpit-pagination-total="44"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-paginate="true" data-background-color="#fff" data-theme="gaia" data-marpit-pagination="26" data-marpit-pagination-total="44" style="--paginate:true;--background-color:#fff;--theme:gaia;background-color:#fff;background-image:none;">
 <h1>Redefine my_* with datafrog_opt_*</h1>
 <p><img src="myerror.drawio.png" alt="" /></p>
 </section>
