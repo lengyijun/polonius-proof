@@ -50,8 +50,6 @@ int main(){                          fn main() {
 ---
 # How Rust borrow checker(NLL) work
 1. identify mutable/immutable borrow
-2. each borrow's live span (in lines)
-3. check conflict (mutable borrow and immutable borrow at same line)
 
 ```
 1 fn main() {            
@@ -76,10 +74,17 @@ int main(){                          fn main() {
 7 }                       
 ```
 
-multiple immutable borrows / one mutable borrow 
+multiple **live** immutable borrows / one **live** mutable borrow 
 
 mutable borrow: L5 
 immutable borrow: L6 L5 L4
+
+---
+# How Rust borrow checker(NLL) work
+
+1. identify mutable/immutable borrow
+2. each borrow's live span (in lines)
+3. check conflict (mutable borrow and immutable borrow at same line)
 
 ---
 # The problem of NLL 
