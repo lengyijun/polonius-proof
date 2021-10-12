@@ -516,7 +516,7 @@ Abella is suitable to express datalog.
 
 But we only utilize a little functionality in Abella here.
 
-Coinduction, nable, lambda calculas, pi calculas ...
+Coinduction, nabla, lambda calculas, pi calculas ...
 
 # But Abella can't prove all truth !
 Gödel's incompleteness theorems 
