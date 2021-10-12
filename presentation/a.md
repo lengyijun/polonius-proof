@@ -11,6 +11,10 @@ In Polonius (the new Rust borrow checker)
 
 By YIJUN Leng 
 
+<!-- 看到等价性，我马上就会想到 -->
+<!-- 矩阵力学和波动力学的等价性 -->
+<!-- lambda calculus 和 turing machine 的等价性 -->
+
 <!-- 首先解释一下题目。。。 -->
 <!-- 虽然有一个看上去很吓人的标题，不过背后原理不超过高中知识 -->
 <!-- 众所周知，SJTUG是一个有着悠久PL传统的社团，形式化证明是我们这里的基础知识。 -->
