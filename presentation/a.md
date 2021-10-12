@@ -28,7 +28,7 @@ manjaro
 ps aux
 
 ---
-# Warm-up: Compile pass? Run pass?
+# Warm-up: Compile/Runtime error?
 ```
 #include<iostream>     
 #include<vector>
@@ -48,7 +48,7 @@ int main(){                          fn main() {
 <!-- right rust: can't compile -->
 
 ---
-# How Rust borrow checker(NLL) work
+# How Rust borrow checker(NLL) works
 1. identify mutable/immutable borrow
 
 ```
@@ -80,7 +80,7 @@ mutable borrow: L5
 immutable borrow: L6 L5 L4
 
 ---
-# How Rust borrow checker(NLL) work
+# How Rust borrow checker(NLL) works
 
 1. identify mutable/immutable borrow
 2. each borrow's live span (in lines)
