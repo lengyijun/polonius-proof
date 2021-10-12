@@ -24,7 +24,7 @@ manjaro
 ps aux
 
 ---
-# WARMUP: Compile pass? Run pass?
+# Warm-up: Compile pass? Run pass?
 ```
 #include<iostream>     
 #include<vector>
@@ -597,4 +597,6 @@ Full proof and ppt here:
 https://github.com/lengyijun/polonius-abella
 
 Welcome to reviewing.
+
+![bg right](wechat.jpg )
 
