@@ -391,12 +391,6 @@ my_subset Origin1  Origin3  Point  :-
 are similar to the classical recursive type definition:
 
 ```
-Kind nat type.
-Type zero nat.
-Type s nat -> nat.
-```
-
-```
 Kind list type .
 Type empty list.
 Type cons nat -> list -> list.
