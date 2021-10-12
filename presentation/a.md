@@ -177,6 +177,14 @@ But how do we formally prove it?
 <!-- compiler emit a lot of facts: loan_issued_at, subset_base, .. -->
 <!-- polonius take facts as input -->
 
+--- 
+# Steps
+1. 
+2. datafrog_opt_error => naive_error
+3. naive_error => datafrog_opt_error
+
+![]( do2naive_question.drawio.png )
+
 ---
 # Choose a proof assistant to prove equivalence of datalog rules
 
