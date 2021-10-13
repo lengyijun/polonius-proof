@@ -573,7 +573,7 @@ fn main() {
 }
 ```
 
-THINKING: compare with P5
+THINKING: compare with P7
 
 https://github.com/rust-lang/rust/issues/70797
 
