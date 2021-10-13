@@ -474,7 +474,8 @@ Null
 - Succinctness
 - Repeatability
 - Discover problem in proof
-
+  four-color theorem
+<!-- 四色定理的证明在11年之后被发现有错误 -->
 <!-- 证明完之后，我一次都没有复查过逻辑，因为我知道一定是对的 -->
 
 --- 
