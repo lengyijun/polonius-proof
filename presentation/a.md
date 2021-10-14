@@ -596,15 +596,11 @@ https://github.com/rust-lang/rust-clippy/issues/7512
 
 # Datalog engines
 1. swi(scala)
-
-2. racket: 
-https://docs.racket-lang.org/datalog/Tutorial.html
-no negative？
-
+2. [racket]( https://docs.racket-lang.org/datalog/Tutorial.html ): 
+<!-- can delelte a fact  -->
+<!-- but no negative？ -->
 3. souffle (c++): parallel. Rust is using
-
 4. bddbddb (java): use binary decision diagram. Rely on NP problem.
-
 5. https://github.com/vmware/differential-datalog
 6. gnu-prolog gprolog (C)
 
