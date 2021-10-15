@@ -596,7 +596,7 @@ https://github.com/rust-lang/rust-clippy/issues/7512
 
 # Datalog engines
 1. swi(scala)
-2. [racket]( https://docs.racket-lang.org/datalog/Tutorial.html ): 
+2. [racket]( https://docs.racket-lang.org/datalog/Tutorial.html )
 <!-- can delelte a fact  -->
 <!-- but no negative？ -->
 3. souffle (c++): parallel. Rust is using
