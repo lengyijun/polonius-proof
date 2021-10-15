@@ -489,6 +489,7 @@ Theorem OriginLiveAxiom:
 skip.
 ```
 A function is the negative of fact!
+` a = ( (a -> false) -> false ) `
 
 ```
 H1: origin_live_on_entry Origin Point 
