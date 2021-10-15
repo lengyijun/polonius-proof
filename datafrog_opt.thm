@@ -180,16 +180,16 @@ Theorem Lemma24:
   ( 
     forall Point, 
     forall Origin1, 
-    forall Origin2, 
-    datafrog_opt_subset Origin1 Origin2 Point -> 
-    naive_subset Origin1 Origin2 Point 
+    forall Origin9, 
+    datafrog_opt_subset Origin1 Origin9 Point -> 
+    naive_subset Origin1 Origin9 Point 
   ) /\ (
     forall Point1, 
     forall Point2, 
     forall Origin1, 
-    forall Origin2, 
-    dying_can_reach Origin1 Origin2 Point1 Point2  -> 
-    naive_subset Origin1 Origin2 Point1
+    forall Origin9, 
+    dying_can_reach Origin1 Origin9 Point1 Point2  -> 
+    naive_subset Origin1 Origin9 Point1
   ).
 induction on 1 1.
 split.

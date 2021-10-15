@@ -28,7 +28,7 @@ manjaro
 ps aux
 
 ---
-# Warm-up: Compile pass? Run pass?
+# Warm-up: Compile/Runtime error?
 ```
 #include<iostream>     
 #include<vector>
@@ -48,7 +48,7 @@ int main(){                          fn main() {
 <!-- right rust: can't compile -->
 
 ---
-# How Rust borrow checker(NLL) work
+# How Rust borrow checker(NLL) works
 1. identify mutable/immutable borrow
 
 ```
@@ -80,7 +80,7 @@ mutable borrow: L5
 immutable borrow: L6 L5 L4
 
 ---
-# How Rust borrow checker(NLL) work
+# How Rust borrow checker(NLL) works
 
 1. identify mutable/immutable borrow
 2. each borrow's live span (in lines)
@@ -474,7 +474,8 @@ Null
 - Succinctness
 - Repeatability
 - Discover problem in proof
-
+  four-color theorem
+<!-- 四色定理的证明在11年之后被发现有错误 -->
 <!-- 证明完之后，我一次都没有复查过逻辑，因为我知道一定是对的 -->
 
 --- 
@@ -497,6 +498,10 @@ H2: origin_live_on_entry Origin Point -> false
 ```
 We can use `search` tactic to get false quickly.
 TODO: How to express three mutually exclusive states?
+
+<!-- what's the negative of  a -> false ?  -->
+<!-- ( a -> false ) -> false -->
+<!-- a = ( a -> false ) -> false  -->
 
 ---
 
@@ -573,7 +578,7 @@ fn main() {
 }
 ```
 
-THINKING: compare with P5
+THINKING: compare with P7
 
 https://github.com/rust-lang/rust/issues/70797
 
@@ -592,15 +597,11 @@ https://github.com/rust-lang/rust-clippy/issues/7512
 
 # Datalog engines
 1. swi(scala)
-
-2. racket: 
-https://docs.racket-lang.org/datalog/Tutorial.html
-no negative？
-
+2. [racket]( https://docs.racket-lang.org/datalog/Tutorial.html )
+<!-- can delelte a fact  -->
+<!-- but no negative？ -->
 3. souffle (c++): parallel. Rust is using
-
 4. bddbddb (java): use binary decision diagram. Rely on NP problem.
-
 5. https://github.com/vmware/differential-datalog
 6. gnu-prolog gprolog (C)
 
