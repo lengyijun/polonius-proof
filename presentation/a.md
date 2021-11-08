@@ -189,7 +189,7 @@ But how do we formally prove it?
 # Choose a proof assistant to prove equivalence of datalog rules
 
 - Isabelle
-- Z3
+- Z3/CVC4/Yices
 - Lean3 Lean4
 - lambda prolog
     Teyjus
