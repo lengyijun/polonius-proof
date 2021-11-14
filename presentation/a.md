@@ -188,13 +188,12 @@ But how do we formally prove it?
 ---
 # Choose a proof assistant to prove equivalence of datalog rules
 
-- Isabelle
-- Z3/CVC4/Yices
+- Isabelle/Coq/Z3/CVC4/Yices
 - Lean3 Lean4
 - lambda prolog
-    Teyjus
-    ELPI(OCaml)
-    **Abella(OCaml)**: suitable to express datalog
+  - Teyjus
+  - ELPI(OCaml)
+  - **Abella(OCaml)**: suitable to express datalog
 
 A lot of under developing...
 
