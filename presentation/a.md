@@ -162,6 +162,9 @@ Compiler team created two set of datalog rules:
 ![bg](datafrog-opt.png )
 
 ---
+![bg contain](naive-do.drawio.png )
+
+---
 
 ![bg left:35% 80%](liveness.drawio.png )
 
