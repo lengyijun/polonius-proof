@@ -361,6 +361,30 @@ Definitely, it's not trival to construct meaningful relationship from naive to d
 
 ---
 
+# Ambiguous definition of `naive_subset`
+
+```
+subset(origin1, origin3, point) :-
+  subset(origin1, origin2, point),
+  subset(origin2, origin3, point).
+
+subset(origin1, origin2, point2) :-
+  subset(origin1, origin2, point1),
+  cfg_edge(point1, point2),
+  origin_live_on_entry(origin1, point2),
+  origin_live_on_entry(origin2, point2).
+```
+
+<!-- Point1 a <=b <=c  
+Point2 a <=b <=c 
+
+`subset Point2 a <=c` can derive from :
+1. subset a c point1
+2. subset a b point2; subset b c point2
+-->
+
+---
+
 # Why so diffculity ?
 - `naive_subset` has no least fixed point.
 - `naive_subset` should not extensible along Point
@@ -584,6 +608,21 @@ THINKING: compare with P7
 
 https://github.com/rust-lang/rust/issues/70797
 
+---
+
+# Polonius can't deal with 3
+
+```
+1 fn main() {
+2     let mut x: (&u32,) = (&22,);
+3     let mut y: &u32 = &33;
+4     let mut z = 44;
+5     y = x.0;
+6     x.0 = &z;
+7     z += 1;
+8     y;
+9 }
+```
 
 ---
 # What else can Polonius help?
