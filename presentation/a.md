@@ -516,18 +516,26 @@ Theorem OriginLiveAxiom:
 skip.
 ```
 A function is the negative of fact!
-` a = ( (a -> false) -> false ) `
+` a => ( (a -> false) -> false ) ` ✓
+` ( (a -> false) -> false ) => a` 𐄂
 
 ```
 H1: origin_live_on_entry Origin Point 
 H2: origin_live_on_entry Origin Point -> false
 ```
 We can use `search` tactic to get false quickly.
-TODO: How to express three mutually exclusive states?
 
 <!-- what's the negative of  a -> false ?  -->
 <!-- ( a -> false ) -> false -->
 <!-- a = ( a -> false ) -> false  -->
+
+---
+# How to express three mutually exclusive states?
+```
+a
+a -> false /\ b
+a -> false /\ b -> false
+```
 
 ---
 
