@@ -644,7 +644,7 @@ https://github.com/rust-lang/rust-clippy/issues/7512
 
 ---
 
-# Datalog engines
+# Prolog engines
 1. souffle (C++): parallel. Rust is using
 2. [DDlog](https://github.com/vmware/differential-datalog) (Rust)
 3. swi (C/C++)
@@ -658,7 +658,7 @@ https://github.com/rust-lang/rust-clippy/issues/7512
 7. scryer-prolog (Rust)
 
 ---
-# Datalog engines
+# Prolog engines
 
 ![](datalog-benchmark.jpg )
 
