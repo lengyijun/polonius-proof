@@ -479,7 +479,7 @@ subset(origin1, origin3, point) :-
 
 
 ---
-# Reaction from Rust community
+## Reaction from Rust community
 ![](zulip.png)
 https://rust-lang.zulipchat.com/#narrow/stream/186049-t-compiler.2Fwg-polonius/topic/Prove.20equivalence.20between.20.20naive.20and.20datafrog-opt
 
