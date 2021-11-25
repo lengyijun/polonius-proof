@@ -626,7 +626,7 @@ https://github.com/rust-lang/rust/issues/70797
 3     let mut z = 44;
 4     let y = x.0;
 5     x.0 = &z;
-6     z += 1;
+6     z = 1;
 7     y;
 8 }
 ```
