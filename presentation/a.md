@@ -245,8 +245,31 @@ naive_subset Origin1  Origin2  Point2  :=
   origin_live_on_entry Origin2  Point2 ;
 ...
 ```
+---
+
+# 1. Express negative in Abella
+
+```
+dead_borrow_region_can_reach_root Origin Point Loan :=
+  loan_issued_at Origin  Loan  Point /\
+  (origin_live_on_entry Origin  Point -> false) ;
+```
 
 ---
+
+# 1. Express Axiom in Abella
+```
+/* The only axiom introduced */
+Theorem OriginLiveAxiom:
+  forall Origin,     
+  forall Point,       
+  (origin_live_on_entry Origin Point ) \/ ( origin_live_on_entry Origin Point -> false). 
+skip.
+```
+`skip` is the only way to express axiom.
+
+---
+
 # 2. datafrog_opt_error => naive_error
 
 ```
@@ -506,18 +529,7 @@ Null
 
 --- 
 
-# Express negative in Abella
-
-```
-Theorem OriginLiveAxiom:                                                                                                    
-  forall Origin,                                                                                                   
-  forall Point,                                                                                                    
-  (origin_live_on_entry Origin Point ) \/ ( origin_live_on_entry Origin Point -> false).                           
-skip.
-```
-A function is the negative of fact!
-` a => ( (a -> false) -> false ) ` ✓
-` ( (a -> false) -> false ) => a` 𐄂
+## Express negative in Intuitionistic Logic
 
 ```
 H1: origin_live_on_entry Origin Point 
@@ -525,9 +537,12 @@ H2: origin_live_on_entry Origin Point -> false
 ```
 We can use `search` tactic to get false quickly.
 
-<!-- what's the negative of  a -> false ?  -->
-<!-- ( a -> false ) -> false -->
-<!-- a = ( a -> false ) -> false  -->
+Negative of `a` is `a -> false`.
+Negative of negative of `a` is `(a -> false) -> false`.
+
+`a => ( (a -> false) -> false ) ` ✓
+`( (a -> false) -> false ) => a` 𐄂
+
 
 ---
 # How to express three mutually exclusive states?
@@ -535,6 +550,12 @@ We can use `search` tactic to get false quickly.
 a
 a -> false /\ b
 a -> false /\ b -> false
+```
+
+```
+a -> false
+a /\ b
+a /\ b -> false
 ```
 
 ---
@@ -556,18 +577,6 @@ Theorem notp_true : p -> false .
 intros . case H1 ( keep ) . apply H2 to H1 .
 ```
 
-
----
-# Axiom in Abella
-```
-/* The only axiom introduced */
-Theorem OriginLiveAxiom:                                                                                                    
-  forall Origin,                                                                                                   
-  forall Point,                                                                                                    
-  (origin_live_on_entry Origin Point ) \/ ( origin_live_on_entry Origin Point -> false).                           
-skip.
-```
-`skip` is the only way to express axiom.
 
 ---
 
