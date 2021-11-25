@@ -388,7 +388,21 @@ Definitely, it's not trival to construct meaningful relationship from naive to d
 
 ![](ambiguous.drawio.png)
 
+---
+## Another example of ambiguous definition
+### matched parens
+```
+# ambiguous definition
+S := null | (S) | S S
+```
 
+`()()()=() ()()`
+`()()()=()() ()`
+
+```
+# unambiguous definition
+S := null | (S) S
+```
 ---
 
 # Why so diffculity ?
