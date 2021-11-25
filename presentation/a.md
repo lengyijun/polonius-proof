@@ -635,6 +635,9 @@ https://github.com/rust-lang/rust/issues/70797
 # What else can Polonius help?
 Static program analysis: safe move
 
+1. [prusti-dev](https://github.com/viperproject/prusti-dev)
+2. clippy
+
 https://github.com/rust-lang/rust-clippy/issues/7459
 
 https://github.com/rust-lang/rust-clippy/issues/7512
