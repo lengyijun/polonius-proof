@@ -25,7 +25,7 @@ By YIJUN Leng
 
 vim
 manjaro
-ps aux
+ps aux (instead of ps -ef)
 
 ---
 # Warm-up: Compile/Runtime error?
@@ -151,7 +151,7 @@ cargo  rustc  -- -Zpolonius
 rustc -Zpolonius main.rs 
 ```
 
-Polonius is based on datalog.
+Written in datalog(prolog) now.
 
 Compiler team created two set of datalog rules: 
 1. naive 
@@ -189,7 +189,7 @@ But how do we formally prove it?
 ![]( do2naive_question.drawio.png )
 
 ---
-# Choose a proof assistant to prove equivalence of datalog rules
+## Choose a proof assistant to express datalog rules
 
 - Isabelle/Coq/Z3/CVC4/Yices
 - Lean3 Lean4
