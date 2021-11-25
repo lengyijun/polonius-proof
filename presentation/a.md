@@ -560,7 +560,7 @@ a /\ b -> false
 
 ---
 
-# Paradox in Abella
+# Paradox in Abella (Liar Paradox)
 <!-- 罗素悖论 -->
 
 Both true and false!
