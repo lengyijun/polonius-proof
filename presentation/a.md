@@ -623,13 +623,12 @@ https://github.com/rust-lang/rust/issues/70797
 ```
 1 fn main() {
 2     let mut x: (&u32,) = (&22,);
-3     let mut y: &u32 = &33;
-4     let mut z = 44;
-5     y = x.0;
-6     x.0 = &z;
-7     z += 1;
-8     y;
-9 }
+3     let mut z = 44;
+4     let y = x.0;
+5     x.0 = &z;
+6     z += 1;
+7     y;
+8 }
 ```
 
 ---

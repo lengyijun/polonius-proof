@@ -501,13 +501,12 @@ fn main() {
 <h1>Polonius can't deal with 3</h1>
 <pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>1 fn main() {
 2     let mut x: (&amp;u32,) = (&amp;22,);
-3     let mut y: &amp;u32 = &amp;33;
-4     let mut z = 44;
-5     y = x.0;
-6     x.0 = &amp;z;
-7     z += 1;
-8     y;
-9 }
+3     let mut z = 44;
+4     let y = x.0;
+5     x.0 = &amp;z;
+6     z += 1;
+7     y;
+8 }
 </span></span></foreignObject></svg></code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="46" data-paginate="true" data-background-color="#fff" data-theme="gaia" data-marpit-pagination="46" data-marpit-pagination-total="49" style="--paginate:true;--background-color:#fff;--theme:gaia;background-color:#fff;background-image:none;">
