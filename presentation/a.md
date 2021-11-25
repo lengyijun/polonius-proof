@@ -624,13 +624,32 @@ https://github.com/rust-lang/rust/issues/70797
 
 ```
 1 fn main() {
-2     let mut x: (&u32,) = (&22,);
-3     let mut z = 44;
-4     let y = x.0;
-5     x.0 = &z;
+2     let mut z = 44;
+3     let mut x = vec![&22];
+4     let y = x[0];
+5     x[0] = &z;
 6     z = 1;
 7     y;
 8 }
+```
+
+---
+
+# Polonius can't deal with 4
+
+```
+fn main() {
+  let a = 1;
+  let mut b = 2;
+
+  let mut aa = &a;
+  let x = &*aa;
+
+  std::mem::replace(&mut aa, &b); 
+  b = 1;
+
+  x;
+}
 ```
 
 ---
