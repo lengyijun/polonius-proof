@@ -696,6 +696,14 @@ https://github.com/rust-lang/rust-clippy/issues/7512
 ![](datalog-benchmark.jpg )
 
 ---
+
+|        | Souffle                                         | DDlog                                                        |
+| ------ | ----------------------------------------------- | ------------------------------------------------------------ |
+| 优点   | 1. nice profiler<br/>2. builtin provenance      | 1. In Rust. Easy to compile for wasm, cross-compile</br>     |
+| 缺点   | 1.  链接问题<br/>2. lacks first-class data type | 1. lack disjunction (DNF)<br/>2. overhead due to incremental capacities<br/>3. bad frontend |
+| 支持者 | lqd                                             | bjorn3, Dylan MacKenzie (ecstatic-morse), Domenic Quirl      |
+
+---
 # Q&A
 
 Full proof and ppt here: 
