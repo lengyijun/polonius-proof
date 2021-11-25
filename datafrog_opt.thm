@@ -198,14 +198,10 @@ case H1.
 search.
 apply IH to H2.
 search.
-case H3.
 case H2.
-apply IH to H6.
-case H4.
-apply IH to H12.
-search.
-apply IH1 to H11.
-apply IH to H13.
+case H3.
+apply IH to H4.
+apply IH1 to H8.
 search.
 
 intros.
