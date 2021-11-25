@@ -384,27 +384,10 @@ Definitely, it's not trival to construct meaningful relationship from naive to d
 
 ---
 
-# Ambiguous definition of `naive_subset`
+<!-- # Ambiguous definition of `naive_subset` -->
 
-```
-subset(origin1, origin3, point) :-
-  subset(origin1, origin2, point),
-  subset(origin2, origin3, point).
+![](ambiguous.drawio.png)
 
-subset(origin1, origin2, point2) :-
-  subset(origin1, origin2, point1),
-  cfg_edge(point1, point2),
-  origin_live_on_entry(origin1, point2),
-  origin_live_on_entry(origin2, point2).
-```
-
-<!-- Point1 a <=b <=c  
-Point2 a <=b <=c 
-
-`subset Point2 a <=c` can derive from :
-1. subset a c point1
-2. subset a b point2; subset b c point2
--->
 
 ---
 
@@ -425,14 +408,14 @@ subset(origin1, origin2, point2) :-
 
 ---
 
-# Redefine my_* with datafrog_opt_*
+## Redefine my_* with datafrog_opt_*
 
 ![](myerror.drawio.png)
 
 ---
 ```
-my_subset Origin1  Origin2  Point  :- datafrog_opt_subset Origin1  Origin2  Point .
-my_subset Origin1  Origin3  Point  :-
+my_subset Origin1 Origin2 Point :- datafrog_opt_subset Origin1 Origin2 Point.
+my_subset Origin1 Origin3 Point :-
   datafrog_opt_subset Origin1  Origin2  Point , 
   my_subset Origin2  Origin3  Point .
 ```
@@ -440,15 +423,16 @@ my_subset Origin1  Origin3  Point  :-
 are similar to the classical recursive type definition:
 
 ```
-Kind list type .
+Kind list type.
+
 Type empty list.
 Type cons nat -> list -> list.
 ```
 --- 
 
 ```
-my_subset Origin1  Origin2  Point  :- datafrog_opt_subset Origin1  Origin2  Point .
-my_subset Origin1  Origin3  Point  :-
+my_subset Origin1 Origin2 Point :- datafrog_opt_subset Origin1 Origin2 Point.
+my_subset Origin1 Origin3 Point :-
   datafrog_opt_subset Origin1  Origin2  Point , 
   my_subset Origin2  Origin3  Point .
 ```
