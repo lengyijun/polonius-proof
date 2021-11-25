@@ -505,10 +505,11 @@ We only need to test the implementation correctness.
 Helpful to verify new datalog rules before implementation.
 
 ---
-# Future work
-Another approach to prove?
+## Future work
+1. Another approach to prove?
+2. polonius.next
 
-# Personal future work 
+## Personal future work 
 1. Work on relationship between mlsub(2017) and ml-simple(2020)
 2. Make Polonius the default borrow checker of Rust
 
