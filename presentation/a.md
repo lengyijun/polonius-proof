@@ -643,6 +643,8 @@ https://github.com/rust-lang/rust/issues/70797
 8 }
 ```
 
+Will be fixed in polonius.next
+
 ---
 
 # Polonius can't deal with 4
@@ -661,6 +663,8 @@ fn main() {
   x;
 }
 ```
+
+Will be fixed in polonius.next
 
 ---
 # What else can Polonius help?
