@@ -317,37 +317,7 @@ Theorem Lemma24:
 
 ---
 
-# induction
-```
-Theorem even_odd : forall x , even x -> odd ( s x ) .
-```
-
-```
-induction on 1.
-```
-
-Induction on one rule.
-
----
-
-# Mutual induction: break cyclic proof
-
-```
-Define even : nat -> prop ,
-       odd  : nat -> prop by
-even z ;
-even ( s N ) := odd N ;
-odd ( s N ) := even N .
-
-Theorem even_odd_nat :
-  ( forall N , even N -> is_nat N ) /\ 
-  ( forall N , odd N -> is_nat N ) .
-```
-
-```
-induction on 1 1.
-```
-
+![]( mutual-induction.drawio.png )
 
 ---
 # 3. naive_error => datafrog_opt_error
