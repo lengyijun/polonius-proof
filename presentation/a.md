@@ -540,6 +540,7 @@ a -> false /\ b -> false
 ---
 
 # Paradox in Abella
+<!-- 罗素悖论 -->
 
 Both true and false!
 Abella will give a warning.
@@ -554,6 +555,7 @@ unfold . intros . case H1 ( keep ) . apply H2 to H1 .
 Theorem notp_true : p -> false .
 intros . case H1 ( keep ) . apply H2 to H1 .
 ```
+
 
 ---
 # Axiom in Abella
