@@ -672,18 +672,19 @@ https://github.com/rust-lang/rust-clippy/issues/7512
 
 ---
 
-# Prolog engines
+## Prolog engines
 1. souffle (C++): parallel. Rust is using
 2. [DDlog](https://github.com/vmware/differential-datalog) (Rust)
-3. swi (C/C++)
+3. datafrog
+4. swi (C/C++)
 
 <!-- can delelte a fact  -->
 <!-- but no negative？ -->
-4. [racket]( https://docs.racket-lang.org/datalog/Tutorial.html )
+5. [racket]( https://docs.racket-lang.org/datalog/Tutorial.html )
 
-5. bddbddb (java): use binary decision diagram. Rely on NP problem.
-6. gnu-prolog gprolog (C)
-7. scryer-prolog (Rust)
+6. bddbddb (java): use binary decision diagram. Rely on NP problem.
+7. gnu-prolog gprolog (C)
+8. scryer-prolog (Rust)
 
 ---
 # Prolog engines
