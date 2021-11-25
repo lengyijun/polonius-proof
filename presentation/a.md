@@ -520,16 +520,6 @@ Null
 
 ---
 
-# Why we need proof assistant?
-- Succinctness
-- Repeatability
-- Discover problem in proof
-  four-color theorem
-<!-- 四色定理的证明在11年之后被发现有错误 -->
-<!-- 证明完之后，我一次都没有复查过逻辑，因为我知道一定是对的 -->
-
---- 
-
 ## Express negative in Intuitionistic Logic
 
 ```
@@ -581,14 +571,15 @@ intros . case H1 ( keep ) . apply H2 to H1 .
 
 ---
 
-# Abella is powerful
-Abella is suitable to express datalog.
+## Why we need proof assistant?
+- Succinctness
+- Repeatability
+- Discover problem in proof
+  four-color theorem
+<!-- 四色定理的证明在11年之后被发现有错误 -->
+<!-- 证明完之后，我一次都没有复查过逻辑，因为我知道一定是对的 -->
 
-But we only utilize a little functionality in Abella here.
-
-Coinduction, nabla, lambda calculas, pi calculas ...
-
-# But Abella can't prove all truth !
+## But Abella can't prove all truth !
 Gödel's incompleteness theorems 
 
 ---
