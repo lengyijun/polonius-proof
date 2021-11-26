@@ -487,6 +487,92 @@ Helpful to verify new datalog rules before implementation.
 Null
 
 ---
+# Polonius can't deal with 1
+
+```
+1 fn main() {
+2     let mut z = 44;
+3     let mut x = vec![&22];
+4     let y = x[0];
+5     x[0] = &z;
+6     z = 1;
+7     y;
+8 }
+```
+
+Will be fixed in polonius.next
+
+---
+
+# Polonius can't deal with 2
+
+```
+fn main() {
+  let a = 1;
+  let mut b = 2;
+
+  let mut aa = &a;
+  let x = &*aa;
+
+  std::mem::replace(&mut aa, &b); 
+  b = 1;
+
+  x;
+}
+```
+
+Will be fixed in polonius.next
+
+---
+
+# Polonius can't deal with 3
+```
+struct S;
+
+fn main() {
+    let s=S;
+    let mut v:Vec<&S>=vec![];
+    v.push(&s);
+    v.pop();
+    drop(s);
+    // although v has remove the last element,
+    // but still throw error
+    v;
+}
+```
+
+---
+
+# Polonius can't deal with 4
+
+```
+use std::collections::binary_heap::BinaryHeap ;
+
+fn main() {
+    let mut heap = BinaryHeap::new();
+    if let Some(_) = heap.peek_mut() {
+        heap.push(4);
+    };
+}
+```
+
+THINKING: compare with P7
+
+https://github.com/rust-lang/rust/issues/70797
+
+---
+## Polonius can help static program analysis
+
+1. [prusti-dev](https://github.com/viperproject/prusti-dev)
+2. clippy (safe move)
+
+https://github.com/rust-lang/rust-clippy/issues/7459
+
+https://github.com/rust-lang/rust-clippy/issues/7512
+
+[redundant_clone](https://rust-lang.github.io/rust-clippy/master/index.html#redundant_clone)
+
+---
 
 ## Express negative in Intuitionistic Logic
 
@@ -549,93 +635,6 @@ intros . case H1 ( keep ) . apply H2 to H1 .
 
 ## But Abella can't prove all truth !
 Gödel's incompleteness theorems 
-
----
-
-# Polonius can't deal with 1
-```
-struct S;
-
-fn main() {
-    let s=S;
-    let mut v:Vec<&S>=vec![];
-    v.push(&s);
-    v.pop();
-    drop(s);
-    // although v has remove the last element,
-    // but still throw error
-    v;
-}
-```
-
----
-
-# Polonius can't deal with 2
-
-```
-use std::collections::binary_heap::BinaryHeap ;
-
-fn main() {
-    let mut heap = BinaryHeap::new();
-    if let Some(_) = heap.peek_mut() {
-        heap.push(4);
-    };
-}
-```
-
-THINKING: compare with P7
-
-https://github.com/rust-lang/rust/issues/70797
-
----
-
-# Polonius can't deal with 3
-
-```
-1 fn main() {
-2     let mut z = 44;
-3     let mut x = vec![&22];
-4     let y = x[0];
-5     x[0] = &z;
-6     z = 1;
-7     y;
-8 }
-```
-
-Will be fixed in polonius.next
-
----
-
-# Polonius can't deal with 4
-
-```
-fn main() {
-  let a = 1;
-  let mut b = 2;
-
-  let mut aa = &a;
-  let x = &*aa;
-
-  std::mem::replace(&mut aa, &b); 
-  b = 1;
-
-  x;
-}
-```
-
-Will be fixed in polonius.next
-
----
-## Polonius can help static program analysis
-
-1. [prusti-dev](https://github.com/viperproject/prusti-dev)
-2. clippy (safe move)
-
-https://github.com/rust-lang/rust-clippy/issues/7459
-
-https://github.com/rust-lang/rust-clippy/issues/7512
-
-[redundant_clone](https://rust-lang.github.io/rust-clippy/master/index.html#redundant_clone)
 
 ---
 
