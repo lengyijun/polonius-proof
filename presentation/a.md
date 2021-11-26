@@ -25,6 +25,7 @@ By YIJUN Leng
 
 vim
 manjaro
+awesomeWM
 ps aux (instead of ps -ef)
 
 ---
