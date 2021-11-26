@@ -626,11 +626,10 @@ fn main() {
 Will be fixed in polonius.next
 
 ---
-# What else can Polonius help?
-Static program analysis: safe move
+## Polonius can help static program analysis
 
 1. [prusti-dev](https://github.com/viperproject/prusti-dev)
-2. clippy
+2. clippy (safe move)
 
 https://github.com/rust-lang/rust-clippy/issues/7459
 
