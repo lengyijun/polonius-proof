@@ -163,6 +163,22 @@ Compiler team created two set of datalog rules:
 ![bg](datafrog-opt.png )
 
 ---
+
+## Datalog/Prolog engines
+1. souffle (C++): parallel. Rust is using
+2. [DDlog](https://github.com/vmware/differential-datalog) (Rust)
+3. datafrog
+4. swi (C/C++)
+
+<!-- can delelte a fact  -->
+<!-- but no negative？ -->
+5. [racket]( https://docs.racket-lang.org/datalog/Tutorial.html )
+
+6. bddbddb (java): use binary decision diagram. Rely on NP problem.
+7. gnu-prolog gprolog (C)
+8. scryer-prolog (Rust)
+
+---
 ![bg contain](naive-do.drawio.png )
 
 ---
@@ -466,7 +482,7 @@ We prove two algorithms in Polonius produce the same result, based on only one a
 
 naive = datafrog-opt is not coincidence.
 
-Improve interpretability of prolog.
+Improve interpretability of datalog.
 
 We don't need to test the correctness of datafrog-opt any more.
 We only need to test the implementation correctness.
@@ -575,6 +591,35 @@ https://github.com/rust-lang/rust-clippy/issues/7512
 
 ---
 
+## Datalog/Prolog engines
+1. souffle (C++): parallel. Rust is using
+2. [DDlog](https://github.com/vmware/differential-datalog) (Rust)
+3. datafrog
+4. swi (C/C++)
+
+<!-- can delelte a fact  -->
+<!-- but no negative？ -->
+5. [racket]( https://docs.racket-lang.org/datalog/Tutorial.html )
+
+6. bddbddb (java): use binary decision diagram. Rely on NP problem.
+7. gnu-prolog gprolog (C)
+8. scryer-prolog (Rust)
+
+---
+# Prolog engines
+
+![](datalog-benchmark.jpg )
+
+---
+
+|        | Souffle                                         | DDlog                                                        |
+| ------ | ----------------------------------------------- | ------------------------------------------------------------ |
+| 优点   | 1. nice profiler<br/>2. builtin provenance      | 1. In Rust. Easy to compile for wasm, cross-compile</br>     |
+| 缺点   | 1.  链接问题<br/>2. lacks first-class data type | 1. lack disjunction (DNF)<br/>2. overhead due to incremental capacities<br/>3. bad frontend |
+| 支持者 | lqd                                             | bjorn3, Dylan MacKenzie (ecstatic-morse), Domenic Quirl      |
+
+---
+
 ## Express negative in Intuitionistic Logic
 
 ```
@@ -639,34 +684,6 @@ Gödel's incompleteness theorems
 
 ---
 
-## Prolog engines
-1. souffle (C++): parallel. Rust is using
-2. [DDlog](https://github.com/vmware/differential-datalog) (Rust)
-3. datafrog
-4. swi (C/C++)
-
-<!-- can delelte a fact  -->
-<!-- but no negative？ -->
-5. [racket]( https://docs.racket-lang.org/datalog/Tutorial.html )
-
-6. bddbddb (java): use binary decision diagram. Rely on NP problem.
-7. gnu-prolog gprolog (C)
-8. scryer-prolog (Rust)
-
----
-# Prolog engines
-
-![](datalog-benchmark.jpg )
-
----
-
-|        | Souffle                                         | DDlog                                                        |
-| ------ | ----------------------------------------------- | ------------------------------------------------------------ |
-| 优点   | 1. nice profiler<br/>2. builtin provenance      | 1. In Rust. Easy to compile for wasm, cross-compile</br>     |
-| 缺点   | 1.  链接问题<br/>2. lacks first-class data type | 1. lack disjunction (DNF)<br/>2. overhead due to incremental capacities<br/>3. bad frontend |
-| 支持者 | lqd                                             | bjorn3, Dylan MacKenzie (ecstatic-morse), Domenic Quirl      |
-
----
 # Q&A
 
 Full proof and ppt here: 
