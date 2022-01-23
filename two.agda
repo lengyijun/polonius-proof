@@ -139,7 +139,9 @@ mutual
   my-subset-propagate {p1 = p1} (con1 x) p1p2 x₂ x₃ = con1 (propagate (p1 , x , p1p2 , x₂ , x₃ ))
   my-subset-propagate {p2 = p2} (con2 (o2 , fst , snd)) p1p2 x₂ x₃ with OriginLiveAxiom o2 p2
   my-subset-propagate {p1 = p1} {p2 = p2} (con2 (o2 , fst , snd)) p1p2 x₂ x₃ | inj₁ x = my-subset-concat (con1 (propagate (p1 , fst , p1p2 , x₂ , x ))) ( my-subset-propagate snd p1p2 x x₃ )
-  my-subset-propagate {p2 = p2} (con2 (o2 , fst , snd)) p1p2 x₂ x₃ | inj₂ y = {!!}
+  my-subset-propagate {o1} {o9} {p1} {p2} (con2 (o2 , fst , snd)) p1p2 x₂ x₃ | inj₂ y with JITING snd (con1 (o1 , con fst p1p2 x₂ y)) p1p2 y x₃
+  my-subset-propagate {o1} {o9} {p1} {p2} (con2 (o2 , fst , snd)) p1p2 x₂ x₃ | inj₂ y | inj₁ y₁ = con1 (con3 ( p1 , o2 , con fst p1p2 x₂ y , y₁ ))
+  my-subset-propagate {o1} {o9} {p1} {p2} (con2 (o2 , fst , snd)) p1p2 x₂ x₃ | inj₂ y | inj₂ (o3 , fst₁ @ (con x x₁) , snd₁) = con2 ( o3 , con3 (p1 , o2 , con fst p1p2 x₂ y , con x x₁) , my-subset-propagate snd₁ p1p2 x₁ x₃ ) 
 
 lemma5 : ∀{o1 o3 : Origin}{p2 : Point} -> naive-subset o1 o3 p2 -> my-subset o1 o3 p2
 lemma5 (base x) = con1 (base x)
