@@ -147,3 +147,40 @@ lemma5 : ∀{o1 o3 : Origin}{p2 : Point} -> naive-subset o1 o3 p2 -> my-subset o
 lemma5 (base x) = con1 (base x)
 lemma5 (propagate (p1 , fst , p1p2 , fst₂ , snd)) = my-subset-propagate (lemma5 fst) p1p2 fst₂ snd
 lemma5 (concat (o2 , fst , snd)) = my-subset-concat (lemma5 fst) (lemma5 snd)
+
+lemma7 : ∀{o1 o9 : Origin}{l : Loan}{p : Point} -> my-origin-contains-loan-on-entry o1 l p -> my-subset o1 o9 p ->  my-origin-contains-loan-on-entry o9 l p
+lemma7 {o1} {o9} {l} {p} x (con1 x₁) = con2 (o1 , x , x₁) 
+lemma7 {o1} {o9} {l} {p} x (con2 (o2 , fst , snd)) = lemma7 (con2 (o1 , x , fst)) snd
+
+mutual
+  lemma8 :  ∀{o2 o9 : Origin}{l : Loan}{p1 p2 : Point} ->
+                 my-origin-contains-loan-on-entry o2 l p1 ->
+                 my-subset o2 o9 p1 ->
+                 cfg-edge p1 p2 ->
+                 ¬ origin-live-on-entry o2 p2 ->
+                 origin-live-on-entry o9 p2 ->
+                 not-loan-killed-at l p1 ->
+                 my-origin-contains-loan-on-entry o9 l p2
+  lemma8 {o2} {o9} {l} {p1} {p2} (con1 x) (con1 x₁) x₂ x₃ x₄ x₅ = con1 (con3
+                                                                          (p1 ,
+                                                                           o2 ,
+                                                                           con x x₅ x₂ x₃ , con (con1 (con2 (l , con x x₅ x₂ x₃)) x₁) x₄))
+  lemma8 {o2} {o9} {l} {p1} {p2} (con1 x) (con2 (o8 , fst , snd)) x₂ x₃ x₄ x₅ with OriginLiveAxiom o8 p2
+  lemma8 {o2} {o9} {l} {p1} {p2} (con1 x) (con2 (o8 , fst , snd)) x₂ x₃ x₄ x₅ | inj₁ x₁ = lemma7 (con1
+                                                                                                    (con3
+                                                                                                     (p1 ,
+                                                                                                      o2 ,
+                                                                                                      con x x₅ x₂ x₃ , con (con1 (con2 (l , con x x₅ x₂ x₃)) fst) x₁))) (my-subset-propagate snd x₂ x₁ x₄)
+  lemma8 {o2} {o9} {l} {p1} {p2} (con1 x) (con2 (o8 , fst , snd)) x₂ x₃ x₄ x₅ | inj₂ y = lemma8 (con2 (o2 , con1 x , fst)) snd x₂ y x₄ x₅
+  lemma8 {o2} {o9} {l} {p1} {p2} (con2 (o1 , fst , snd)) x₁ x₂ x₃ x₄ x₅ = {!!}
+  
+  my-origin-propagate : ∀{o2 : Origin}{l : Loan}{p1 p2 : Point} -> my-origin-contains-loan-on-entry o2 l p1 -> cfg-edge p1 p2 -> origin-live-on-entry o2 p2 -> not-loan-killed-at l p1 -> my-origin-contains-loan-on-entry o2 l p2
+  my-origin-propagate {p1 = p1} (con1 x) x₁ x₂ x₃ = con1 (con2 (p1 , x , x₃ , x₁ , x₂))
+  my-origin-propagate {p2 = p2} (con2 (o1 , fst , snd)) x₁ x₂ x₃ with OriginLiveAxiom o1 p2
+  my-origin-propagate {p1 = p1} {p2 = p2} (con2 (o1 , fst , snd)) x₁ x₂ x₃ | inj₁ x = con2 (o1 , my-origin-propagate fst x₁ x x₃ , propagate (p1 , snd , x₁ , x , x₂) )
+  my-origin-propagate {o2} {l} {p1} {p2} (con2 (o1 , fst , snd)) p1p2 x₂ x₃ | inj₂ y = {!!}
+
+lemma6 : ∀{o2 : Origin}{l : Loan}{p2 : Point} -> naive-origin-contains-loan-on-entry o2 l p2 -> my-origin-contains-loan-on-entry o2 l p2
+lemma6 {o2} {l} {p2} (con1 x) = con1 (con1 x)
+lemma6 {o2} {l} {p2} (con2 (o1 , fst , snd)) = lemma7 (lemma6 fst) (lemma5 snd)
+lemma6 {o2} {l} {p2} (con3 (p1 , fst , fst₁ , fst₂ , snd)) = my-origin-propagate (lemma6 fst) fst₂ snd fst₁
