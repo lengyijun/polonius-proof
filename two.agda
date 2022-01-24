@@ -196,18 +196,23 @@ mutual
            my-subset o8 o9 p ->
            origin-live-on-entry o9 p ->
            ¬ origin-live-on-entry o8 p ->
-           Σ[ o5 ∈ Origin ] origin-live-on-entry o5 p × datafrog-opt-origin-contains-loan-on-entry o5 l p × my-subset o5 o9 p
-  lemma11 {l} {p} {o8} {o9} (con1 x) x₁ x₂ x₃ = {!!}
-  lemma11 {l} {p} {o8} {o9} (con2 x) x₁ x₂ x₃ = {!!}
+           datafrog-opt-loan-live-at l p
+  lemma11 {l} {p} {o8} {o9} (con1 (con1 x)) x₁ x₂ x₃ = lemma12 (con1 (con x x₃)) x₃ x₁ x₂
+  lemma11 {l} {p2} {o8} {o9} (con1 (con2 (p1 , fst₁ , fst₂ , p1p2 , snd))) x₁ x₂ x₃ = con1 (o8 , con2 (p1 , fst₁ , fst₂ , p1p2 , snd) , snd)
+  lemma11 {l} {p2} {o8} {o9} (con1 (con3 (p1 , o7 , con x₅ x₆ x₇ x₈ , con x x₄))) x₁ x₂ x₃ = con1
+                                                                                               (o8 , con3 (p1 , o7 , con x₅ x₆ x₇ (λ _ → x₃ x₄) , con x x₄) , x₄)
+  lemma11 {l} {p} {o8} {o9} (con2 (o7 , fst , snd)) x₁ x₂ x₃ with OriginLiveAxiom o7 p
+  lemma11 {l} {p} {o8} {o9} (con2 (o7 , fst , snd)) x₁ x₂ x₃ | inj₁ x = lemma10 fst x
+  lemma11 {l} {p} {o8} {o9} (con2 (o7 , fst , snd)) x₁ x₂ x₃ | inj₂ y = lemma11 fst (con2 (o8 , snd , x₁)) x₂ y
   
   lemma10 : ∀{l : Loan}{p : Point}{o9 : Origin } ->
            my-origin-contains-loan-on-entry o9 l p ->
            origin-live-on-entry o9 p ->
-           datafrog-opt-origin-contains-loan-on-entry o9 l p ⊎ ( Σ[ o5 ∈ Origin ] origin-live-on-entry o5 p × datafrog-opt-origin-contains-loan-on-entry o5 l p × my-subset o5 o9 p )
-  lemma10 {l} {p} {o9} (con1 x) x₁ = inj₁ x
-  lemma10 {l} {p} {o9} (con2 (o8 , fst , snd)) x₁ = {!!}
+           datafrog-opt-loan-live-at l p
+  lemma10 {l} {p} {o9} (con1 x) x₁ = con1 (o9 , x , x₁)
+  lemma10 {l} {p} {o9} (con2 (o8 , fst , snd)) x₁ with OriginLiveAxiom o8 p
+  lemma10 {l} {p} {o9} (con2 (o8 , fst , snd)) x₁ | inj₁ x = lemma10 fst x 
+  lemma10 {l} {p} {o9} (con2 (o8 , fst , snd)) x₁ | inj₂ y = lemma11 fst (con1 snd) x₁ y
 
 naive→datafrog :  ∀{l : Loan}{p2 : Point} -> naive-errors l p2  ->  datafrog-opt-errors l p2
-naive→datafrog {l} {p2} (con x (con (o5 , con1 x₁ , snd))) = con x (con1 (o5 , con1 x₁ , snd))
-naive→datafrog {l} {p2} (con x (con (o5 , con2 (o4 , fst , snd₁) , snd))) = con x {!!}
-naive→datafrog {l} {p2} (con x (con (o5 , con3 (p1 , fst , fst₁ , fst₂ , snd₁) , snd))) = {!!}
+naive→datafrog (con x (con (fst , fst₁ , snd))) = con x (lemma10 (lemma6 fst₁) snd)
