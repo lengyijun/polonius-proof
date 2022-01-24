@@ -161,26 +161,53 @@ mutual
                  origin-live-on-entry o9 p2 ->
                  not-loan-killed-at l p1 ->
                  my-origin-contains-loan-on-entry o9 l p2
-  lemma8 {o2} {o9} {l} {p1} {p2} (con1 x) (con1 x₁) x₂ x₃ x₄ x₅ = con1 (con3
-                                                                          (p1 ,
-                                                                           o2 ,
-                                                                           con x x₅ x₂ x₃ , con (con1 (con2 (l , con x x₅ x₂ x₃)) x₁) x₄))
-  lemma8 {o2} {o9} {l} {p1} {p2} (con1 x) (con2 (o8 , fst , snd)) x₂ x₃ x₄ x₅ with OriginLiveAxiom o8 p2
-  lemma8 {o2} {o9} {l} {p1} {p2} (con1 x) (con2 (o8 , fst , snd)) x₂ x₃ x₄ x₅ | inj₁ x₁ = lemma7 (con1
-                                                                                                    (con3
-                                                                                                     (p1 ,
-                                                                                                      o2 ,
-                                                                                                      con x x₅ x₂ x₃ , con (con1 (con2 (l , con x x₅ x₂ x₃)) fst) x₁))) (my-subset-propagate snd x₂ x₁ x₄)
-  lemma8 {o2} {o9} {l} {p1} {p2} (con1 x) (con2 (o8 , fst , snd)) x₂ x₃ x₄ x₅ | inj₂ y = lemma8 (con2 (o2 , con1 x , fst)) snd x₂ y x₄ x₅
-  lemma8 {o2} {o9} {l} {p1} {p2} (con2 (o1 , fst , snd)) x₁ x₂ x₃ x₄ x₅ = {!!}
+  lemma8 {o2} {o9} {l} {p1} {p2} (con1 x) x₁ p1p2 x₃ x₄ x₅ with JITING x₁ (con2 (l , con x x₅ p1p2 x₃)) p1p2 x₃ x₄
+  lemma8 {o2} {o9} {l} {p1} {p2} (con1 x) x₁ p1p2 x₃ x₄ x₅ | inj₁ x₂ = con1 (con3 (p1 , o2 , con x x₅ p1p2 x₃ , x₂))
+  lemma8 {o2} {o9} {l} {p1} {p2} (con1 x) x₁ p1p2 x₃ x₄ x₅ | inj₂ (o5 , fst , snd) = lemma7 (con1 (con3 (p1 , o2 , con x x₅ p1p2 x₃ , fst ))) snd
+  lemma8 {o2} {o9} {l} {p1} {p2} (con2 (o1 , fst , snd)) x₁ p1p2 x₃ x₄ x₅ with OriginLiveAxiom o1 p2
+  lemma8 {o2} {o9} {l} {p1} {p2} (con2 (o1 , fst , snd)) x₁ p1p2 x₃ x₄ x₅ | inj₁ x = lemma7 (my-origin-propagate fst p1p2 x x₅) (my-subset-propagate (con2 (o2 , snd , x₁)) p1p2 x x₄)
+  lemma8 {o2} {o9} {l} {p1} {p2} (con2 (o1 , fst , snd)) x₁ p1p2 x₃ x₄ x₅ | inj₂ y = lemma8 fst (con2 (o2 , snd , x₁)) p1p2 y x₄ x₅
   
   my-origin-propagate : ∀{o2 : Origin}{l : Loan}{p1 p2 : Point} -> my-origin-contains-loan-on-entry o2 l p1 -> cfg-edge p1 p2 -> origin-live-on-entry o2 p2 -> not-loan-killed-at l p1 -> my-origin-contains-loan-on-entry o2 l p2
   my-origin-propagate {p1 = p1} (con1 x) x₁ x₂ x₃ = con1 (con2 (p1 , x , x₃ , x₁ , x₂))
   my-origin-propagate {p2 = p2} (con2 (o1 , fst , snd)) x₁ x₂ x₃ with OriginLiveAxiom o1 p2
   my-origin-propagate {p1 = p1} {p2 = p2} (con2 (o1 , fst , snd)) x₁ x₂ x₃ | inj₁ x = con2 (o1 , my-origin-propagate fst x₁ x x₃ , propagate (p1 , snd , x₁ , x , x₂) )
-  my-origin-propagate {o2} {l} {p1} {p2} (con2 (o1 , fst , snd)) p1p2 x₂ x₃ | inj₂ y = {!!}
+  my-origin-propagate {o2} {l} {p1} {p2} (con2 (o1 , fst , snd)) p1p2 x₂ x₃ | inj₂ y = lemma8 fst (con1 snd) p1p2 y x₂ x₃
 
 lemma6 : ∀{o2 : Origin}{l : Loan}{p2 : Point} -> naive-origin-contains-loan-on-entry o2 l p2 -> my-origin-contains-loan-on-entry o2 l p2
 lemma6 {o2} {l} {p2} (con1 x) = con1 (con1 x)
 lemma6 {o2} {l} {p2} (con2 (o1 , fst , snd)) = lemma7 (lemma6 fst) (lemma5 snd)
 lemma6 {o2} {l} {p2} (con3 (p1 , fst , fst₁ , fst₂ , snd)) = my-origin-propagate (lemma6 fst) fst₂ snd fst₁
+
+lemma12 :  ∀{l : Loan}{p : Point}{o2 o9 : Origin } ->
+           dead-borrow-region-can-reach-dead o2 p l ->
+           ¬ origin-live-on-entry o2 p ->
+           my-subset o2 o9 p ->
+           origin-live-on-entry o9 p ->
+           datafrog-opt-loan-live-at l p
+lemma12 {l} {p} {o2} {o9} x x₁ (con1 x₂) x₃ = con2 (o2 , o9 , x , x₂ , x₃)
+lemma12 {l} {p} {o2} {o9} x x₁ (con2 (o3 , snd)) x₃ with OriginLiveAxiom o3 p
+lemma12 {l} {p} {o2} {o9} x x₁ (con2 (o3 , fst , snd)) x₃ | inj₁ x₂ = con2 (o2 , o3 , x , fst , x₂)
+lemma12 {l} {p} {o2} {o9} x x₁ (con2 (o3 , fst , snd)) x₃ | inj₂ y = lemma12 (con2 (o2 , x , fst , y)) y snd x₃
+
+mutual
+  lemma11 :  ∀{l : Loan}{p : Point}{o8 o9 : Origin } ->
+           my-origin-contains-loan-on-entry o8 l p ->
+           my-subset o8 o9 p ->
+           origin-live-on-entry o9 p ->
+           ¬ origin-live-on-entry o8 p ->
+           Σ[ o5 ∈ Origin ] origin-live-on-entry o5 p × datafrog-opt-origin-contains-loan-on-entry o5 l p × my-subset o5 o9 p
+  lemma11 {l} {p} {o8} {o9} (con1 x) x₁ x₂ x₃ = {!!}
+  lemma11 {l} {p} {o8} {o9} (con2 x) x₁ x₂ x₃ = {!!}
+  
+  lemma10 : ∀{l : Loan}{p : Point}{o9 : Origin } ->
+           my-origin-contains-loan-on-entry o9 l p ->
+           origin-live-on-entry o9 p ->
+           datafrog-opt-origin-contains-loan-on-entry o9 l p ⊎ ( Σ[ o5 ∈ Origin ] origin-live-on-entry o5 p × datafrog-opt-origin-contains-loan-on-entry o5 l p × my-subset o5 o9 p )
+  lemma10 {l} {p} {o9} (con1 x) x₁ = inj₁ x
+  lemma10 {l} {p} {o9} (con2 (o8 , fst , snd)) x₁ = {!!}
+
+naive→datafrog :  ∀{l : Loan}{p2 : Point} -> naive-errors l p2  ->  datafrog-opt-errors l p2
+naive→datafrog {l} {p2} (con x (con (o5 , con1 x₁ , snd))) = con x (con1 (o5 , con1 x₁ , snd))
+naive→datafrog {l} {p2} (con x (con (o5 , con2 (o4 , fst , snd₁) , snd))) = con x {!!}
+naive→datafrog {l} {p2} (con x (con (o5 , con3 (p1 , fst , fst₁ , fst₂ , snd₁) , snd))) = {!!}
