@@ -3,12 +3,16 @@
 ## What is this?
 In [polonius](https://github.com/rust-lang/polonius), there are two datalog rules: naive and datafrog-opt.
 
-This repo use [abella](http://abella-prover.org/) to prove that they are equivalent. 
+This repo use [abella](http://abella-prover.org/) and Agda to prove that they are equivalent. 
+(dependently, and slightly different lemmas)
 
-## How to run
+## How to run abella version
 ```
 abella datafrog_opt.thm
 ```
+
+## How to run agda version
+In emacs, `C-c C-l`
 
 ## How to prove 
 Just to prove 
