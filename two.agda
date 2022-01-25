@@ -121,7 +121,17 @@ data my-origin-contains-loan-on-entry(o2 : Origin)(l : Loan)(p : Point) : Set wh
 postulate
   -- TODO rename
   OriginLiveAxiom : (o : Origin) -> ( p : Point ) -> origin-live-on-entry o p  ⊎  ¬ origin-live-on-entry o p
-
+  
+HEWEN :  ∀{o1 o2 o9 : Origin}{p1 p2 : Point} ->
+          dying-can-reach o1 o2 p1 p2 ->
+          my-subset o2 o9 p1 ->
+          origin-live-on-entry o9 p2 ->
+          dying-can-reach-live o1 o9 p1 p2 ⊎ Σ[ o2 ∈ Origin ] dying-can-reach-live o1 o2 p1 p2 × my-subset o2 o9 p1
+HEWEN {o1} {o2} {o9} {p1} {p2} x x₁ x₂ with OriginLiveAxiom o2 p2
+HEWEN {o1} {o2} {o9} {p1} {p2} x x₁ x₂ | inj₁ x₃ = inj₂ (o2 , con x x₃ , x₁)
+HEWEN {o1} {o2} {o9} {p1} {p2} x (con1 x₁) x₂ | inj₂ y = inj₁ (con (con2 (o2 , x , y , x₁)) x₂)
+HEWEN {o1} {o2} {o9} {p1} {p2} x (con2 (o3 , fst , snd)) x₂ | inj₂ y = HEWEN (con2 (o2 , x , y , fst)) snd x₂
+  
 mutual
   JIQIAN :  ∀{o1 o2 o9 : Origin}{p1 p2 : Point} -> dying-can-reach o1 o2 p1 p2 -> my-subset o2 o9 p1 -> cfg-edge p1 p2 -> origin-live-on-entry o9 p2 -> dying-can-reach-live o1 o9 p1 p2 ⊎ Σ[ o2 ∈ Origin ] dying-can-reach-live o1 o2 p1 p2 × my-subset o2 o9 p2
   JIQIAN {o1} {o2} {o9} {p1} {p2} x x₁ x₂ x₃ with OriginLiveAxiom o2 p2
