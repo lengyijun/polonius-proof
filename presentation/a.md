@@ -292,7 +292,7 @@ odd (suc n) :- even n
 
 ---
 
-# 1.4 Express negative in Abella
+# 1.4 Negative in Abella
 
 ```
 dead_borrow_region_can_reach_root Origin Point Loan :=
@@ -300,9 +300,14 @@ dead_borrow_region_can_reach_root Origin Point Loan :=
   (origin_live_on_entry Origin  Point -> false) ;
 ```
 
+```
+not a = a -> false
+(not a) a = (a -> false) a = false
+```
+
 ---
 
-# 1.4 Express Axiom in Abella
+# 1.5 Axiom in Abella
 ```
 /* The only axiom introduced */
 Theorem OriginLiveAxiom:
