@@ -228,7 +228,7 @@ A lot of under developing...
 ![]( do2naive_question.drawio.png )
 
 ---
-##  1. Use Abella to describe datalog
+##  1.1 Use Abella to describe datalog
 
 ```
 Kind origin type.
@@ -249,28 +249,39 @@ postulate
 ```
 
 ---
-
-# 1. Use Abella to describe datalog
+# 1.2 Defination
 ```
-Define  naive_subset: origin -> origin -> point -> prop,
-        naive_origin_contains_loan_on_entry: origin -> loan -> point -> prop,
-        naive_loan_live_at: loan -> point -> prop,
-        naive_errors: loan -> point -> prop  by
+Define naive_loan_live_at: loan -> point -> prop by
 
-naive_subset Origin1  Origin2  Point  :=
-  subset_base Origin1  Origin2  Point ;
+naive_loan_live_at Loan  Point  :=
+  exists Origin,
+  naive_origin_contains_loan_on_entry Origin  Loan  Point /\
+  origin_live_on_entry Origin  Point .
+```
 
-naive_subset Origin1  Origin2  Point2  :=
-  exists Point1,
-  naive_subset Origin1  Origin2  Point1 /\
-  cfg_edge Point1  Point2 /\
-  origin_live_on_entry Origin1  Point2 /\
-  origin_live_on_entry Origin2  Point2 ;
-...
+---
+
+# 1.3 Mutual defination
+```
+Define dead_borrow_region_can_reach_root: origin -> point -> loan -> prop ,
+       dead_borrow_region_can_reach_dead: origin -> point -> loan -> prop,
+       dying_region_requires: origin -> point -> point -> loan -> prop ,
+       datafrog_opt_errors: loan -> point -> prop by
+
+dead_borrow_region_can_reach_root Origin Point Loan :=
+  loan_issued_at Origin  Loan  Point /\
+  (origin_live_on_entry Origin  Point -> false) ;
+
+dead_borrow_region_can_reach_dead Origin Point Loan :=
+  dead_borrow_region_can_reach_root Origin Point Loan;
 ```
 ---
 
-# 1. Express negative in Abella
+![bg contain](naive-do.drawio.png )
+
+---
+
+# 1.4 Express negative in Abella
 
 ```
 dead_borrow_region_can_reach_root Origin Point Loan :=
@@ -280,7 +291,7 @@ dead_borrow_region_can_reach_root Origin Point Loan :=
 
 ---
 
-# 1. Express Axiom in Abella
+# 1.4 Express Axiom in Abella
 ```
 /* The only axiom introduced */
 Theorem OriginLiveAxiom:
@@ -290,6 +301,12 @@ Theorem OriginLiveAxiom:
 skip.
 ```
 `skip` is the only way to express axiom.
+
+```
+# in Agda
+postulate
+  OriginLiveAxiom : (o : Origin) -> ( p : Point ) -> origin-live-on-entry o p  ⊎  ¬ origin-live-on-entry o p
+```
 
 ---
 
