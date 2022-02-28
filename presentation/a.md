@@ -213,7 +213,7 @@ But how do we formally prove it?
 - lambda prolog
   - Teyjus
   - ELPI(OCaml)
-  - **Abella(OCaml)**: suitable to express datalog
+  - **Abella(OCaml)**: Higher-order abstract syntax (HOAS, λ-tree) 
 
 A lot of under developing...
 
