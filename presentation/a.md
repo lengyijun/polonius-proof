@@ -28,6 +28,7 @@ manjaro
 awesomeWM
 ps aux (instead of ps -ef)
 zprezto (instead of omz, zinit ...)
+polonius (instead of NLL)
 
 ---
 # Warm-up: Compile/Runtime error?
