@@ -538,6 +538,21 @@ Helpful to verify new datalog rules before implementation.
 
 Null
 
+--- 
+
+# Q&A
+
+Full proof and ppt here: 
+https://github.com/lengyijun/polonius-abella
+
+Welcome to reviewing.
+
+--- 
+
+## Question
+
+![](changeorder.drawio.png )
+
 ---
 # Polonius can't deal with 1
 
@@ -699,14 +714,4 @@ intros . case H1 ( keep ) . apply H2 to H1 .
 ## But Abella can't prove all truth !
 Gödel's incompleteness theorems 
 Substituition in unification algorithm ? 
-
----
-
-# Q&A
-
-Full proof and ppt here: 
-https://github.com/lengyijun/polonius-abella
-
-Welcome to reviewing.
-
 
