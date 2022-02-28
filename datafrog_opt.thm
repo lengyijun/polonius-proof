@@ -127,10 +127,7 @@ datafrog_opt_errors Loan  Point  :=
 
 
 
-Define  naive_subset: origin -> origin -> point -> prop,
-        naive_origin_contains_loan_on_entry: origin -> loan -> point -> prop,
-        naive_loan_live_at: loan -> point -> prop,
-        naive_errors: loan -> point -> prop  by
+Define naive_subset: origin -> origin -> point -> prop by
 
 naive_subset Origin1  Origin2  Point  :=
   subset_base Origin1  Origin2  Point ;
@@ -145,7 +142,9 @@ naive_subset Origin1  Origin2  Point2  :=
 naive_subset Origin1  Origin3  Point  :=
   exists Origin2,
   naive_subset Origin1  Origin2  Point /\
-  naive_subset Origin2  Origin3  Point ;
+  naive_subset Origin2  Origin3  Point .
+
+Define naive_origin_contains_loan_on_entry: origin -> loan -> point -> prop by
 
 naive_origin_contains_loan_on_entry Origin Loan Point  :=
   loan_issued_at Origin Loan Point ;
@@ -164,13 +163,15 @@ naive_origin_contains_loan_on_entry Origin  Loan  Point2  :=
   naive_origin_contains_loan_on_entry Origin  Loan  Point1 /\
   not_loan_killed_at Loan  Point1  /\
   cfg_edge Point1  Point2 /\
-  origin_live_on_entry Origin  Point2 ;
+  origin_live_on_entry Origin  Point2 .
 
+Define naive_loan_live_at: loan -> point -> prop by
 naive_loan_live_at Loan  Point  :=
   exists Origin,
   naive_origin_contains_loan_on_entry Origin  Loan  Point /\
-  origin_live_on_entry Origin  Point ;
+  origin_live_on_entry Origin  Point .
 
+Define naive_errors: loan -> point -> prop  by
 naive_errors Loan  Point  :=
   loan_invalidated_at Loan  Point /\
   naive_loan_live_at Loan  Point .
