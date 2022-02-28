@@ -228,7 +228,8 @@ A lot of under developing...
 ![]( do2naive_question.drawio.png )
 
 ---
-# 1. Use Abella to describe datalog
+##  1. Use Abella to describe datalog
+
 ```
 Kind origin type.
 Kind loan type.
@@ -238,8 +239,13 @@ Type origin_live_on_entry origin -> point -> prop.
 Type loan_issued_at origin -> loan -> point -> prop.
 Type cfg_edge point -> point -> prop.
 Type loan_invalidated_at loan -> point -> prop.
-Type not_loan_killed_at loan -> point -> prop.
-Type subset_base origin -> origin -> point -> prop.
+```
+
+(in Agda equivalent to:)
+```
+postulate
+  Origin : Set
+  origin-live-on-entry : Origin -> Point -> Set
 ```
 
 ---

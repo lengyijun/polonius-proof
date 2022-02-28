@@ -202,7 +202,7 @@ rustc -Zpolonius main.rs
 <p><img src="do2naive_question.drawio.png" alt="" /></p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-paginate="true" data-background-color="#fff" data-theme="gaia" data-marpit-pagination="18" data-marpit-pagination-total="52" style="--paginate:true;--background-color:#fff;--theme:gaia;background-color:#fff;background-image:none;">
-<h1>1. Use Abella to describe datalog</h1>
+<h2>1. Use Abella to describe datalog</h2>
 <pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>Kind origin type.
 Kind loan type.
 Kind point type.
@@ -211,8 +211,11 @@ Type origin_live_on_entry origin -&gt; point -&gt; prop.
 Type loan_issued_at origin -&gt; loan -&gt; point -&gt; prop.
 Type cfg_edge point -&gt; point -&gt; prop.
 Type loan_invalidated_at loan -&gt; point -&gt; prop.
-Type not_loan_killed_at loan -&gt; point -&gt; prop.
-Type subset_base origin -&gt; origin -&gt; point -&gt; prop.
+</span></span></foreignObject></svg></code></pre>
+<p>(in Agda equivalent to:)</p>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>postulate
+  Origin : Set
+  origin-live-on-entry : Origin -&gt; Point -&gt; Set
 </span></span></foreignObject></svg></code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-paginate="true" data-background-color="#fff" data-theme="gaia" data-marpit-pagination="19" data-marpit-pagination-total="52" style="--paginate:true;--background-color:#fff;--theme:gaia;background-color:#fff;background-image:none;">
