@@ -577,24 +577,6 @@ Will be fixed in polonius.next
 ---
 
 # Polonius can't deal with 3
-```
-struct S;
-
-fn main() {
-    let s=S;
-    let mut v:Vec<&S>=vec![];
-    v.push(&s);
-    v.pop();
-    drop(s);
-    // although v has remove the last element,
-    // but still throw error
-    v;
-}
-```
-
----
-
-# Polonius can't deal with 4
 
 ```
 use std::collections::binary_heap::BinaryHeap ;
@@ -715,6 +697,7 @@ intros . case H1 ( keep ) . apply H2 to H1 .
 
 ## But Abella can't prove all truth !
 Gödel's incompleteness theorems 
+Substituition in unification algorithm ? 
 
 ---
 
