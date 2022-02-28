@@ -281,6 +281,17 @@ dead_borrow_region_can_reach_dead Origin Point Loan :=
 
 ---
 
+## Another example to mutual defination
+
+```
+even 0
+even (suc n) :- odd n
+
+odd (suc n) :- even n 
+```
+
+---
+
 # 1.4 Express negative in Abella
 
 ```
