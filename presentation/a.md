@@ -66,13 +66,13 @@ int main(){                          fn main() {
 # Lightly desugared
 
 ```
-1 fn main() {            
-2     let mut v=vec![12];
-3     let x=&v[0];
-4     dbg!(x);
-5     Vec::reserve(&mut v, 100);
-6     dbg!(x);
-7 }                       
+1 fn main() {                  fn main() {            
+2     let mut v=vec![12];          let mut v=vec![12];
+3     let x=&v[0];                 let x=&v[0];
+4     dbg!(x);                     dbg!(x);
+5     v.reserve(100);              Vec::reserve(&mut v, 100);
+6     dbg!(x);                     dbg!(x);
+7 }                            }                       
 ```
 
 multiple **live** immutable borrows / one **live** mutable borrow 
@@ -208,7 +208,7 @@ But how do we formally prove it?
 ---
 ## Choose a proof assistant to express datalog rules
 
-- Isabelle/Coq/Z3/CVC4/Yices
+- Isabelle/Coq/Agda/Z3/CVC4/Yices
 - Lean3 Lean4
 - lambda prolog
   - Teyjus
