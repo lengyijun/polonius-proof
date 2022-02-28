@@ -725,5 +725,4 @@ https://github.com/lengyijun/polonius-abella
 
 Welcome to reviewing.
 
-![bg right](wechat.jpg )
 
