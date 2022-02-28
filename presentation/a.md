@@ -351,7 +351,7 @@ datafrog_origin_contain_loan_on_entry Origin Loan Point
 <!-- 为什么第一个lemma就是24, 因为前面23个全错了 -->
 
 ---
-# Prove Lemma24
+# Prove Lemma24 (mutually)
 
 ```
 Theorem Lemma24:
