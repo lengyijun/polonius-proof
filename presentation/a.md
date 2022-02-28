@@ -27,6 +27,7 @@ vim
 manjaro
 awesomeWM
 ps aux (instead of ps -ef)
+zprezto (instead of omz, zinit ...)
 
 ---
 # Warm-up: Compile/Runtime error?
