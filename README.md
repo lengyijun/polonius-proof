@@ -12,7 +12,8 @@ abella datafrog_opt.thm
 ```
 
 ## How to run agda version
-In emacs, `C-c C-l`
+In `emacs two.agda`, `C-c C-l`
+`Agda checked`
 
 ## How to prove 
 Just to prove 
