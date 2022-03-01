@@ -665,7 +665,7 @@ Negative of `a` is `a -> false`.
 Negative of negative of `a` is `(a -> false) -> false`.
 
 `a => ( (a -> false) -> false ) ` ✓
-`( (a -> false) -> false ) => a` 𐄂
+`( (a -> false) -> false ) => a` ✖
 
 
 ---
