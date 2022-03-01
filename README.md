@@ -11,9 +11,12 @@ This repo use [abella](http://abella-prover.org/) and Agda to prove that they ar
 abella datafrog_opt.thm
 ```
 
-## How to run agda version
+See `Proof completed.` in output.
+
+## How to run Agda version
 In `emacs two.agda`, `C-c C-l`
-`Agda checked`
+
+See `Agda checked`.
 
 ## How to prove 
 Just to prove 
