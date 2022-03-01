@@ -210,8 +210,8 @@ But how do we formally prove it?
 ---
 ## Choose a proof assistant to express datalog rules
 
-- Isabelle/Coq/Agda/CVC4/Yices
-- Lean3 Lean4
+- Isabelle/Coq/Lean/CVC4/Yices
+- Agda(dependent type) 
 - lambda prolog
   - Teyjus
   - ELPI(OCaml)
