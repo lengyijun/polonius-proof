@@ -210,7 +210,7 @@ But how do we formally prove it?
 ---
 ## Choose a proof assistant to express datalog rules
 
-- Isabelle/Coq/Agda/Z3/CVC4/Yices
+- Isabelle/Coq/Agda/CVC4/Yices
 - Lean3 Lean4
 - lambda prolog
   - Teyjus
