@@ -418,7 +418,7 @@ Definitely, it's not trival to construct meaningful relationship from naive to d
 
 ---
 ## Another example of ambiguous definition
-### matched parens
+### matched parens   ()   (())   (()
 ```
 # ambiguous definition
 S := null | (S) | S S
