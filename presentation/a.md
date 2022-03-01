@@ -672,6 +672,7 @@ Negative of negative of `a` is `(a -> false) -> false`.
 
 `a => ( (a -> false) -> false ) ` ✓
 `( (a -> false) -> false ) => a` ✖
+`( (a -> false) -> false ) -> false <=> a -> false `  ✓
 
 
 ---
@@ -720,5 +721,4 @@ intros . case H1 ( keep ) . apply H2 to H1 .
 
 ## But Abella can't prove all truth !
 Gödel's incompleteness theorems 
-Substituition in unification algorithm ? 
 
