@@ -1,4 +1,4 @@
-# polonius-abella
+# polonius-proof
 
 ## What is this?
 In [polonius](https://github.com/rust-lang/polonius), there are two datalog rules: naive and datafrog-opt.
