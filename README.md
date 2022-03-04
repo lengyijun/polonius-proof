@@ -6,7 +6,7 @@ In [polonius](https://github.com/rust-lang/polonius), there are two datalog rule
 This repo use [abella](http://abella-prover.org/) and Agda to prove that they are equivalent. 
 (dependently, and slightly different lemmas)
 
-## How to run abella version
+## How to run Abella version
 ```
 abella datafrog_opt.thm
 ```
