@@ -436,6 +436,9 @@ S := null | (S) S
 
 https://github.com/rust-lang/polonius/issues/176
 
+
+<!-- subset 与 cut climination ， transitive rule 有关系吗？ -->
+
 ---
 
 # Why so diffculity ?
