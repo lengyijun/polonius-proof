@@ -432,6 +432,11 @@ S := null | (S) | S S
 S := null | (S) S
 ```
 ---
+# `naive_subsut` is inefficient
+
+https://github.com/rust-lang/polonius/issues/176
+
+---
 
 # Why so diffculity ?
 - `naive_subset` has no least fixed point.
