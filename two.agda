@@ -1,4 +1,3 @@
-module polonius-abella.two where
 open import Data.Sum
 open import Data.Product
 open import Data.Unit
