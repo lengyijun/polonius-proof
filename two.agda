@@ -122,23 +122,23 @@ postulate
   OriginLiveAxiom : (o : Origin) -> ( p : Point ) -> origin-live-on-entry o p  ⊎  ¬ origin-live-on-entry o p
 
 mutual
-  JIQIAN :  ∀{o1 o2 o9 : Origin}{p1 p2 : Point} -> dying-can-reach o1 o2 p1 p2 -> my-subset o2 o9 p1 -> cfg-edge p1 p2 -> origin-live-on-entry o9 p2 -> dying-can-reach-live o1 o9 p1 p2 ⊎ Σ[ o2 ∈ Origin ] dying-can-reach-live o1 o2 p1 p2 × my-subset o2 o9 p2
-  JIQIAN {o1} {o2} {o9} {p1} {p2} x x₁ x₂ x₃ with OriginLiveAxiom o2 p2
-  JIQIAN {o1} {o2} {o9} {p1} {p2} x x₁ x₂ x₃ | inj₁ x₄ = inj₂ ( o2 , con x x₄ , my-subset-propagate x₁ x₂ x₄ x₃ )
-  JIQIAN {o1} {o2} {o9} {p1} {p2} x (con1 x₁) p1p2 x₃ | inj₂ y = inj₁ (con (con2 (o2 , x , y , x₁)) x₃)
-  JIQIAN {o1} {o2} {o9} {p1} {p2} x (con2 (o3 , fst , snd)) p1p2 x₃ | inj₂ y = JIQIAN ( con2 ( o2 ,  x , y , fst) ) snd p1p2 x₃
+  lemma14 :  ∀{o1 o2 o9 : Origin}{p1 p2 : Point} -> dying-can-reach o1 o2 p1 p2 -> my-subset o2 o9 p1 -> cfg-edge p1 p2 -> origin-live-on-entry o9 p2 -> dying-can-reach-live o1 o9 p1 p2 ⊎ Σ[ o2 ∈ Origin ] dying-can-reach-live o1 o2 p1 p2 × my-subset o2 o9 p2
+  lemma14 {o1} {o2} {o9} {p1} {p2} x x₁ x₂ x₃ with OriginLiveAxiom o2 p2
+  lemma14 {o1} {o2} {o9} {p1} {p2} x x₁ x₂ x₃ | inj₁ x₄ = inj₂ ( o2 , con x x₄ , my-subset-propagate x₁ x₂ x₄ x₃ )
+  lemma14 {o1} {o2} {o9} {p1} {p2} x (con1 x₁) p1p2 x₃ | inj₂ y = inj₁ (con (con2 (o2 , x , y , x₁)) x₃)
+  lemma14 {o1} {o2} {o9} {p1} {p2} x (con2 (o3 , fst , snd)) p1p2 x₃ | inj₂ y = lemma14 ( con2 ( o2 ,  x , y , fst) ) snd p1p2 x₃
   
-  JITING : ∀{o1 o9 : Origin}{p1 p2 : Point} -> my-subset o1 o9 p1 -> dying-can-reach-origins o1 p1 p2 -> cfg-edge p1 p2 -> ¬ origin-live-on-entry o1 p2 -> origin-live-on-entry o9 p2 -> dying-can-reach-live o1 o9 p1 p2 ⊎ Σ[ o2 ∈ Origin ] dying-can-reach-live o1 o2 p1 p2 × my-subset o2 o9 p2
-  JITING (con1 x) y x₁ x₂ x₃ = inj₁ (con (con1 y x) x₃)
-  JITING {p2 = p2} (con2 (o2 , fst , snd)) y x₁ x₂ x₃ with OriginLiveAxiom o2 p2
-  JITING {p2 = p2} (con2 (o2 , fst , snd)) y x₁ x₂ x₃ | inj₁ x = inj₂ ( o2 , con ( con1 y fst ) x , my-subset-propagate snd x₁ x x₃ )
-  JITING {p2 = p2} (con2 (o2 , fst , snd)) y x₁ x₂ x₃ | inj₂ y₁ = JIQIAN (con1 y fst) snd x₁ x₃
+  lemma15 : ∀{o1 o9 : Origin}{p1 p2 : Point} -> my-subset o1 o9 p1 -> dying-can-reach-origins o1 p1 p2 -> cfg-edge p1 p2 -> ¬ origin-live-on-entry o1 p2 -> origin-live-on-entry o9 p2 -> dying-can-reach-live o1 o9 p1 p2 ⊎ Σ[ o2 ∈ Origin ] dying-can-reach-live o1 o2 p1 p2 × my-subset o2 o9 p2
+  lemma15 (con1 x) y x₁ x₂ x₃ = inj₁ (con (con1 y x) x₃)
+  lemma15 {p2 = p2} (con2 (o2 , fst , snd)) y x₁ x₂ x₃ with OriginLiveAxiom o2 p2
+  lemma15 {p2 = p2} (con2 (o2 , fst , snd)) y x₁ x₂ x₃ | inj₁ x = inj₂ ( o2 , con ( con1 y fst ) x , my-subset-propagate snd x₁ x x₃ )
+  lemma15 {p2 = p2} (con2 (o2 , fst , snd)) y x₁ x₂ x₃ | inj₂ y₁ = lemma14 (con1 y fst) snd x₁ x₃
 
   my-subset-propagate : ∀{o1 o9 : Origin}{p1 p2 : Point} -> my-subset o1 o9 p1 -> cfg-edge p1 p2 -> origin-live-on-entry o1 p2 -> origin-live-on-entry o9 p2 -> my-subset o1 o9 p2
   my-subset-propagate {p1 = p1} (con1 x) p1p2 x₂ x₃ = con1 (propagate (p1 , x , p1p2 , x₂ , x₃ ))
   my-subset-propagate {p2 = p2} (con2 (o2 , fst , snd)) p1p2 x₂ x₃ with OriginLiveAxiom o2 p2
   my-subset-propagate {p1 = p1} {p2 = p2} (con2 (o2 , fst , snd)) p1p2 x₂ x₃ | inj₁ x = my-subset-concat (con1 (propagate (p1 , fst , p1p2 , x₂ , x ))) ( my-subset-propagate snd p1p2 x x₃ )
-  my-subset-propagate {o1} {o9} {p1} {p2} (con2 (o2 , fst , snd)) p1p2 x₂ x₃ | inj₂ y with JITING snd (con1 (o1 , con fst p1p2 x₂ y)) p1p2 y x₃
+  my-subset-propagate {o1} {o9} {p1} {p2} (con2 (o2 , fst , snd)) p1p2 x₂ x₃ | inj₂ y with lemma15 snd (con1 (o1 , con fst p1p2 x₂ y)) p1p2 y x₃
   my-subset-propagate {o1} {o9} {p1} {p2} (con2 (o2 , fst , snd)) p1p2 x₂ x₃ | inj₂ y | inj₁ y₁ = con1 (con3 ( p1 , o2 , con fst p1p2 x₂ y , y₁ ))
   my-subset-propagate {o1} {o9} {p1} {p2} (con2 (o2 , fst , snd)) p1p2 x₂ x₃ | inj₂ y | inj₂ (o3 , con x x₁ , snd₁) = con2 ( o3 , con3 (p1 , o2 , con fst p1p2 x₂ y , con x x₁) , snd₁ ) 
 
@@ -160,7 +160,7 @@ mutual
                  origin-live-on-entry o9 p2 ->
                  not-loan-killed-at l p1 ->
                  my-origin-contains-loan-on-entry o9 l p2
-  lemma8 {o2} {o9} {l} {p1} {p2} (con1 x) x₁ p1p2 x₃ x₄ x₅ with JITING x₁ (con2 (l , con x x₅ p1p2 x₃)) p1p2 x₃ x₄
+  lemma8 {o2} {o9} {l} {p1} {p2} (con1 x) x₁ p1p2 x₃ x₄ x₅ with lemma15 x₁ (con2 (l , con x x₅ p1p2 x₃)) p1p2 x₃ x₄
   lemma8 {o2} {o9} {l} {p1} {p2} (con1 x) x₁ p1p2 x₃ x₄ x₅ | inj₁ x₂ = con1 (con3 (p1 , o2 , con x x₅ p1p2 x₃ , x₂))
   lemma8 {o2} {o9} {l} {p1} {p2} (con1 x) x₁ p1p2 x₃ x₄ x₅ | inj₂ (o5 , fst , snd) = lemma7 (con1 (con3 (p1 , o2 , con x x₅ p1p2 x₃ , fst ))) snd
   lemma8 {o2} {o9} {l} {p1} {p2} (con2 (o1 , fst , snd)) x₁ p1p2 x₃ x₄ x₅ with OriginLiveAxiom o1 p2
